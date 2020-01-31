@@ -27,7 +27,8 @@ def princomp(X,M)
     lambda = scipy.sparse.linalg.eigsh(cov, k= M, which = 'LM')[0]
     W = scipy.sparse.linalg.eigsh(cov, k= M, which = 'LM')[1]
     mu = X.mean(axis=1, keepdims=True)
-    
+    #not really sure if that is what we are suppose to do for Z
+    Z = np.transpose(X).dot(W)
 
 
     return(W, Z, mu, lambda)
