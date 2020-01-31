@@ -31,11 +31,8 @@ def princomp(X,M):
     mu = X.mean(axis=1, keepdims=True)
     #not really sure if that is what we are suppose to do for Z
     Z = np.transpose(W).dot(X)
-
-
+    
     return(W, Z, mu, lam)
-
-
 
 returned = princomp(X, 2)
 
@@ -50,8 +47,19 @@ def faceplot(X, i):
     
  faceplot(X, 10)
  
- 
- faceplot(returned[0][0:,], 0)
- faceplot(returned[0][0:,], 1)
+returned = princomp(X, 1)
+faceplot(returned[0][0:,], 0)
+
+returned = princomp(X, 2)
+faceplot(returned[0][0:,], 0)
+faceplot(returned[0][0:,], 1)
+
+returned = princomp(X, 5)
+
+faceplot(returned[0][0:,], 0)
+faceplot(returned[0][0:,], 1)
+faceplot(returned[0][0:,], 2)
+faceplot(returned[0][0:,], 3)
+faceplot(returned[0][0:,], 4)
 
 
