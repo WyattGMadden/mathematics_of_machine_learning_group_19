@@ -16,7 +16,7 @@ mat = scipy.loadmat('/Users/dancrowley/Documents/machine_learning_zosso/lab_3_dc
 X = mat["X"]
 X.shape
 
-import scipy as scipy 
+ 
 
 #principle components calculator 
 M=6
