@@ -280,16 +280,121 @@
     
 
     
+    \section{3.1}\label{section}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{test}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{io} \PY{k}{as} \PY{n+nn}{scipy}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-test
+{\color{incolor}In [{\color{incolor}65}]:} \PY{c+c1}{\PYZsh{} PRINcipal COMPonent calculator}
+         \PY{c+c1}{\PYZsh{}   Calculates the principal components of a collection of points.}
+         \PY{c+c1}{\PYZsh{} Input:}
+         \PY{c+c1}{\PYZsh{}   X \PYZhy{} D\PYZhy{}by\PYZhy{}N data matrix of N points in D dimensions.}
+         \PY{c+c1}{\PYZsh{} Output:}
+         \PY{c+c1}{\PYZsh{}   W \PYZhy{} A D\PYZhy{}by\PYZhy{}M matrix containing the M principal components of the data.}
+         \PY{c+c1}{\PYZsh{}   Z \PYZhy{} A M\PYZhy{}by\PYZhy{}N matrix containing the latent variables of the data.}
+         \PY{c+c1}{\PYZsh{}   mu \PYZhy{} A D\PYZhy{}by\PYZhy{}1 vector containing the mean of the data.}
+         \PY{c+c1}{\PYZsh{}   lambda \PYZhy{} A vector containing the eigenvalues associated with the above principal components.}
+         
+         \PY{k}{def} \PY{n+nf}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{M}\PY{p}{)}\PY{p}{:}
+             \PY{n}{mu} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{X\PYZus{}centered} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{mu}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+             \PY{n}{S} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X\PYZus{}centered}\PY{p}{)}\PY{p}{,} \PY{n}{X\PYZus{}centered}\PY{p}{)} \PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+             \PY{n}{eig\PYZus{}vals\PYZus{}and\PYZus{}vecs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{eigh}\PY{p}{(}\PY{n}{S}\PY{p}{)}
+             \PY{n}{eig\PYZus{}vals} \PY{o}{=} \PY{n}{eig\PYZus{}vals\PYZus{}and\PYZus{}vecs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{eig\PYZus{}vecs} \PY{o}{=} \PY{n}{eig\PYZus{}vals\PYZus{}and\PYZus{}vecs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argpartition}\PY{p}{(}\PY{n}{eig\PYZus{}vals}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{:}\PY{p}{]}
+             \PY{n}{lambdas} \PY{o}{=} \PY{n}{eig\PYZus{}vals}\PY{p}{[}\PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds}\PY{p}{]}
+             \PY{n}{W} \PY{o}{=} \PY{n}{eig\PYZus{}vecs}\PY{p}{[}\PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds}\PY{p}{]}
+             \PY{n}{Z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{subtract}\PY{p}{(}\PY{n}{mu}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{M}
+         
+             \PY{n}{d} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+             \PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{W}
+             \PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Z}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{Z}
+             \PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{mu}
+             \PY{n}{d}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lambda}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{lambdas}
+         
+             \PY{k}{return} \PY{n}{d}
+\end{Verbatim}
 
-    \end{Verbatim}
 
+    \section{3.2}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{cbcl} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/wyattmadden/Documents/school/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} 
+                              \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSU/2020/spring/m508/lab\PYZus{}info/lab\PYZus{}3/cbcl.mat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                             \PY{n}{squeeze\PYZus{}me} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{X} \PY{o}{=} \PY{n}{cbcl}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{x\PYZus{}axis\PYZus{}points} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                   \PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{y\PYZus{}axis\PYZus{}points} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                 \PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+             \PY{n}{one\PYZus{}face} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]}
+             \PY{n}{X\PYZus{}shaped} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                       \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                       \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             
+             \PY{n}{cmap} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{cubehelix\PYZus{}palette}\PY{p}{(}\PY{n}{as\PYZus{}cmap}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+             \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+             \PY{n}{points} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x\PYZus{}axis\PYZus{}points}\PY{p}{,} 
+                                 \PY{n}{y\PYZus{}axis\PYZus{}points}\PY{p}{,} 
+                                 \PY{n}{c} \PY{o}{=} \PY{n}{one\PYZus{}face}\PY{p}{,}
+                                 \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{,} 
+                                 \PY{n}{cmap} \PY{o}{=} \PY{n}{cmap}\PY{p}{)} 
+             \PY{n}{f}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{points}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{th face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{3.3}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{n}{five\PYZus{}face} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+         
+         \PY{n}{mean\PYZus{}face} \PY{o}{=} \PY{n}{five\PYZus{}face}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+             
+         \PY{n}{cmap} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{cubehelix\PYZus{}palette}\PY{p}{(}\PY{n}{as\PYZus{}cmap}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+         \PY{n}{points} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x\PYZus{}axis\PYZus{}points}\PY{p}{,} 
+                             \PY{n}{y\PYZus{}axis\PYZus{}points}\PY{p}{,} 
+                             \PY{n}{c} \PY{o}{=} \PY{n}{mean\PYZus{}face}\PY{p}{,}
+                             \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{,} 
+                             \PY{n}{cmap} \PY{o}{=} \PY{n}{cmap}\PY{p}{)} 
+         \PY{n}{f}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{points}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean Face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             
+             
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}67}]:} Text(0.5,1,'Mean Face')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
 
     % Add a bibliography block to the postdoc
     
