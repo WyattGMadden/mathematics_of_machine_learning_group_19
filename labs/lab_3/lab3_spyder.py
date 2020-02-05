@@ -63,3 +63,10 @@ faceplot(returned[0][0:,], 3)
 faceplot(returned[0][0:,], 4)
 
 
+
+pca = princomp(X, 10)
+plt.plot(list(range(9 ,-1 , -1)), pca[3])
+
+
+pca = princomp(X, 5)
+plt.plot(list(range(4 ,-1 , -1)), pca[3])
