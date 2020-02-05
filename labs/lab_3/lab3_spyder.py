@@ -47,7 +47,7 @@ def faceplot(X, i):
     
  faceplot(X, 10)
  
-returned = princomp(X, 1)
+pca = princomp(X, 1)
 faceplot(returned[0][0:,], 0)
 
 returned = princomp(X, 2)
@@ -70,3 +70,19 @@ plt.plot(list(range(9 ,-1 , -1)), pca[3])
 
 pca = princomp(X, 5)
 plt.plot(list(range(4 ,-1 , -1)), pca[3])
+
+
+pca = princomp(X, 25)
+faceplot(pca[0][0:,], 0)
+faceplot(X, 10)
+
+#shame answer as mean face, but from a different way! 
+
+data = pca[3] * pca[0]
+data2 = data.sum(axis = 1)
+plt.imshow(np.reshape(data2, (19,19)))
+
+
+
+
+
