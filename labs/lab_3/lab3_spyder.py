@@ -113,10 +113,12 @@ faceplot(pca[0][0:,], 1)
 faceplot(pca[0][0:,], 2)
 
 #extra: how to tell the number of 0s and 1s
-pca[3]
-plt.plot(list(range(2 ,-1 , -1)), pca[3])
 
-
+#visualizing the 3rd principle component it looks like a circle
+#the latent variable, z, should have high scores for the 0's in the dataset
+#and low scores for the 1s
+#look at pca[1], the z scores. then grab the 3rd part of the array
+#then just plot it
 plt.plot(pca[1][2])
 
 
