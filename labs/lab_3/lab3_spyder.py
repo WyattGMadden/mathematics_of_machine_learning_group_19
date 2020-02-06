@@ -16,10 +16,8 @@ mat = scipy.loadmat('/Users/dancrowley/Documents/machine_learning_zosso/lab_3_dc
 X = mat["X"]
 X.shape
 
- 
 
 #principle components calculator 
-M=6
     
 def princomp(X,M):
 
@@ -81,6 +79,18 @@ faceplot(X, 10)
 data = pca[3] * pca[0]
 data2 = data.sum(axis = 1)
 plt.imshow(np.reshape(data2, (19,19)))
+
+
+
+######################################
+
+mat = scipy.loadmat('/Users/dancrowley/Documents/machine_learning_zosso/lab_3_dc/mnist.mat')
+X = mat["X"]
+X.shape
+
+pca = princomp(X, 1)
+
+scipy.
 
 
 
