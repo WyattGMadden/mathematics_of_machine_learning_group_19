@@ -6,13 +6,15 @@ Created on Fri Jan 31 12:25:21 2020
 @author: dancrowley
 """
 
-import scipy.io as scipy 
+import scipy.io as scipy_io
 
 import numpy as np
+import scipy as scipy
 from scipy.stats import norm
+from scipy.sparse.linalg import eigsh
+import matplotlib.pyplot as plt
 
-
-mat = scipy.loadmat('/Users/dancrowley/Documents/machine_learning_zosso/lab_3_dc/cbcl.mat')
+mat = scipy_io.loadmat('/Users/dancrowley/Documents/machine_learning_zosso/lab_3_dc/cbcl.mat')
 X = mat["X"]
 X.shape
 
@@ -34,7 +36,6 @@ def princomp(X,M):
 
 returned = princomp(X, 2)
 
-import matplotlib.pyplot as plt
 
 
 def faceplot(X, i):
@@ -84,13 +85,63 @@ plt.imshow(np.reshape(data2, (19,19)))
 
 ######################################
 
-mat = scipy.loadmat('/Users/dancrowley/Documents/machine_learning_zosso/lab_3_dc/mnist.mat')
+mat = scipy_io.loadmat('/Users/dancrowley/Documents/machine_learning_zosso/lab_3_dc/mnist.mat')
 X = mat["X"]
 X.shape
 
+
+def faceplot(X, i):
+    face = [row[i] for row in X]
+    face_mat = np.reshape(face, (28,28))
+    fig = plt.imshow(face_mat)
+    return(fig)
+    
 pca = princomp(X, 1)
 
-scipy.
+
+faceplot(X, 1)
+faceplot(X, 100)
+faceplot(X, 200)
+faceplot(X, 6000)
+faceplot(X, 7900)
+faceplot(X, 12664)
+
+
+pca = princomp(X, 3)
+faceplot(pca[0][0:,], 0)
+faceplot(pca[0][0:,], 1)
+faceplot(pca[0][0:,], 2)
+
+#extra: how to tell the number of 0s and 1s
+pca[3]
+plt.plot(list(range(2 ,-1 , -1)), pca[3])
+
+
+plt.plot(pca[1][2])
+
+
+
+
+pca = princomp(X, 5)
+faceplot(pca[0][0:,], 0)
+faceplot(pca[0][0:,], 1)
+faceplot(pca[0][0:,], 2)
+faceplot(pca[0][0:,], 3)
+faceplot(pca[0][0:,], 4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
