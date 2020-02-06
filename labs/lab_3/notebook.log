@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  5 FEB 2020 18:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  5 FEB 2020 20:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -816,31 +816,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 390--391
 
  []
 
-<output_4_6.png, id=64, 363.3575pt x 264.99pt>
+<output_4_6.png, id=64, 369.38pt x 264.99pt>
 File: output_4_6.png Graphic file (type png)
  <use output_4_6.png>
 Package pdftex.def Info: output_4_6.png used on input line 393.
-(pdftex.def)             Requested size: 363.3566pt x 264.98935pt.
+(pdftex.def)             Requested size: 369.37909pt x 264.98935pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 395--396
 
  []
 
-<output_4_7.png, id=65, 369.38pt x 264.99pt>
+<output_4_7.png, id=65, 363.3575pt x 264.99pt>
 File: output_4_7.png Graphic file (type png)
  <use output_4_7.png>
 Package pdftex.def Info: output_4_7.png used on input line 398.
-(pdftex.def)             Requested size: 369.37909pt x 264.98935pt.
+(pdftex.def)             Requested size: 363.3566pt x 264.98935pt.
  [5 <./output_4_5.png> <./output_4_6.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 400--401
 
  []
 
-<output_4_8.png, id=72, 363.3575pt x 264.99pt>
+<output_4_8.png, id=72, 369.38pt x 264.99pt>
 File: output_4_8.png Graphic file (type png)
  <use output_4_8.png>
 Package pdftex.def Info: output_4_8.png used on input line 403.
-(pdftex.def)             Requested size: 363.3566pt x 264.98935pt.
+(pdftex.def)             Requested size: 369.37909pt x 264.98935pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
@@ -856,11 +856,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 410--411
 
  []
 
-<output_4_10.png, id=80, 369.38pt x 264.99pt>
+<output_4_10.png, id=80, 363.3575pt x 264.99pt>
 File: output_4_10.png Graphic file (type png)
  <use output_4_10.png>
 Package pdftex.def Info: output_4_10.png used on input line 413.
-(pdftex.def)             Requested size: 369.37909pt x 264.98935pt.
+(pdftex.def)             Requested size: 363.3566pt x 264.98935pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 415--416
 
@@ -886,11 +886,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 425--426
 
  []
 
-<output_4_13.png, id=90, 369.38pt x 264.99pt>
+<output_4_13.png, id=90, 363.3575pt x 264.99pt>
 File: output_4_13.png Graphic file (type png)
  <use output_4_13.png>
 Package pdftex.def Info: output_4_13.png used on input line 428.
-(pdftex.def)             Requested size: 369.37909pt x 264.98935pt.
+(pdftex.def)             Requested size: 363.3566pt x 264.98935pt.
  [8 <./output_4_11.png> <./output_4_12.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 430--431
 
@@ -916,11 +916,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 440--441
 
  []
 
-<output_4_16.png, id=105, 369.38pt x 264.99pt>
+<output_4_16.png, id=105, 363.3575pt x 264.99pt>
 File: output_4_16.png Graphic file (type png)
  <use output_4_16.png>
 Package pdftex.def Info: output_4_16.png used on input line 443.
-(pdftex.def)             Requested size: 369.37909pt x 264.98935pt.
+(pdftex.def)             Requested size: 363.3566pt x 264.98935pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 445--446
 
@@ -946,11 +946,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 455--456
 
  []
 
-<output_4_19.png, id=114, 369.38pt x 264.99pt>
+<output_4_19.png, id=114, 363.3575pt x 264.99pt>
 File: output_4_19.png Graphic file (type png)
  <use output_4_19.png>
 Package pdftex.def Info: output_4_19.png used on input line 458.
-(pdftex.def)             Requested size: 369.37909pt x 264.98935pt.
+(pdftex.def)             Requested size: 363.3566pt x 264.98935pt.
  [11 <./output_4_17.png> <./output_4_18.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 460--461
 
@@ -1087,50 +1087,198 @@ Underfull \hbox (badness 10000) in paragraph at lines 589--590
 
  []
 
-<output_15_1.png, id=181, 367.3725pt x 252.945pt>
-File: output_15_1.png Graphic file (type png)
- <use output_15_1.png>
-Package pdftex.def Info: output_15_1.png used on input line 603.
-(pdftex.def)             Requested size: 367.37158pt x 252.94438pt.
+<output_15_0.png, id=181, 375.4025pt x 252.945pt>
+File: output_15_0.png Graphic file (type png)
+ <use output_15_0.png>
+Package pdftex.def Info: output_15_0.png used on input line 604.
+(pdftex.def)             Requested size: 375.40158pt x 252.94438pt.
 
 [20 <./output_13_0.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 605--606
+Underfull \hbox (badness 10000) in paragraph at lines 606--607
 
  []
 
-[21 <./output_15_1.png>] [22] [23]
-<output_19_1.png, id=200, 1066.98625pt x 859.21pt>
-File: output_19_1.png Graphic file (type png)
- <use output_19_1.png>
-Package pdftex.def Info: output_19_1.png used on input line 758.
-(pdftex.def)             Requested size: 1066.98366pt x 859.20792pt.
+<output_18_1.png, id=187, 367.3725pt x 252.945pt>
+File: output_18_1.png Graphic file (type png)
+ <use output_18_1.png>
+Package pdftex.def Info: output_18_1.png used on input line 623.
+(pdftex.def)             Requested size: 367.37158pt x 252.94438pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 760--761
+[21 <./output_15_0.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 625--626
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 767.
-[24 <./output_19_1.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 767.
+[22 <./output_18_1.png>] <output_22_1.png, id=198, 1076.02pt x 1943.26pt>
+File: output_22_1.png Graphic file (type png)
+
+<use output_22_1.png>
+Package pdftex.def Info: output_22_1.png used on input line 669.
+(pdftex.def)             Requested size: 1076.0174pt x 1943.25528pt.
+ [23]
+Overfull \vbox (65.03639pt too high) has occurred while \output is active []
+
+
+[24 <./output_22_1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 671--672
+
+ []
+
+<output_24_1.png, id=208, 255.95625pt x 252.945pt>
+File: output_24_1.png Graphic file (type png)
+ <use output_24_1.png>
+Package pdftex.def Info: output_24_1.png used on input line 695.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 697--698
+
+ []
+
+<output_25_1.png, id=209, 255.95625pt x 252.945pt>
+File: output_25_1.png Graphic file (type png)
+ <use output_25_1.png>
+Package pdftex.def Info: output_25_1.png used on input line 709.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+[25 <./output_24_1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 711--712
+
+ []
+
+<output_26_1.png, id=217, 255.95625pt x 252.945pt>
+File: output_26_1.png Graphic file (type png)
+ <use output_26_1.png>
+Package pdftex.def Info: output_26_1.png used on input line 723.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 725--726
+
+ []
+
+[26 <./output_25_1.png> <./output_26_1.png>]
+<output_27_1.png, id=225, 255.95625pt x 252.945pt>
+File: output_27_1.png Graphic file (type png)
+ <use output_27_1.png>
+Package pdftex.def Info: output_27_1.png used on input line 738.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 740--741
+
+ []
+
+<output_28_1.png, id=226, 255.95625pt x 252.945pt>
+File: output_28_1.png Graphic file (type png)
+ <use output_28_1.png>
+Package pdftex.def Info: output_28_1.png used on input line 752.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 754--755
+
+ []
+
+[27 <./output_27_1.png> <./output_28_1.png>]
+<output_29_1.png, id=233, 255.95625pt x 252.945pt>
+File: output_29_1.png Graphic file (type png)
+ <use output_29_1.png>
+Package pdftex.def Info: output_29_1.png used on input line 766.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 768--769
+
+ []
+
+<output_32_1.png, id=234, 394.47375pt x 252.945pt>
+File: output_32_1.png Graphic file (type png)
+ <use output_32_1.png>
+Package pdftex.def Info: output_32_1.png used on input line 790.
+(pdftex.def)             Requested size: 394.47278pt x 252.94438pt.
+
+[28 <./output_29_1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 792--793
+
+ []
+
+<output_33_1.png, id=241, 255.95625pt x 252.945pt>
+File: output_33_1.png Graphic file (type png)
+ <use output_33_1.png>
+Package pdftex.def Info: output_33_1.png used on input line 805.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 807--808
+
+ []
+
+[29 <./output_32_1.png> <./output_33_1.png>]
+<output_34_1.png, id=248, 255.95625pt x 252.945pt>
+File: output_34_1.png Graphic file (type png)
+ <use output_34_1.png>
+Package pdftex.def Info: output_34_1.png used on input line 819.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--822
+
+ []
+
+<output_35_1.png, id=249, 255.95625pt x 252.945pt>
+File: output_35_1.png Graphic file (type png)
+ <use output_35_1.png>
+Package pdftex.def Info: output_35_1.png used on input line 833.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 835--836
+
+ []
+
+[30 <./output_34_1.png> <./output_35_1.png>]
+<output_36_1.png, id=256, 255.95625pt x 252.945pt>
+File: output_36_1.png Graphic file (type png)
+ <use output_36_1.png>
+Package pdftex.def Info: output_36_1.png used on input line 847.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 849--850
+
+ []
+
+<output_37_1.png, id=257, 255.95625pt x 252.945pt>
+File: output_37_1.png Graphic file (type png)
+ <use output_37_1.png>
+Package pdftex.def Info: output_37_1.png used on input line 861.
+(pdftex.def)             Requested size: 255.95561pt x 252.94438pt.
+
+[31 <./output_36_1.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 863--864
+
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 870.
+[32 <./output_37_1.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 870.
  (./notebook.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 767.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 767.
-Package rerunfilecheck Info: File `notebook.out' has not changed.
-(rerunfilecheck)             Checksum: 22A56556CD0B10972D3E058A826D9A76;266.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 870.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 870.
 
+
+Package rerunfilecheck Warning: File `notebook.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `notebook.out':
+(rerunfilecheck)             Before: 22A56556CD0B10972D3E058A826D9A76;266
+(rerunfilecheck)             After:  2096380790C2288A85C9617CF0645989;340.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 767.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 870.
  ) 
 Here is how much of TeX's memory you used:
- 11027 strings out of 492995
- 166484 string characters out of 6132704
- 275630 words of memory out of 5000000
- 14340 multiletter control sequences out of 15000+600000
+ 11088 strings out of 492995
+ 167622 string characters out of 6132704
+ 269630 words of memory out of 5000000
+ 14391 multiletter control sequences out of 15000+600000
  19835 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,6n,38p,565b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,6n,38p,566b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{
 /usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texl
@@ -1138,10 +1286,10 @@ ive/2017/texmf-dist/fonts/type1/public/cm-super/sfit1095.pfb></usr/local/texliv
 e/2017/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/
 2017/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on notebook.pdf (24 pages, 1865617 bytes).
+Output written on notebook.pdf (32 pages, 2366088 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 227 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 300 PDF objects out of 1000 (max. 8388607)
+ 166 compressed objects within 2 object streams
+ 42 named destinations out of 1000 (max. 500000)
+ 292 words of extra memory for PDF output out of 10000 (max. 10000000)
 

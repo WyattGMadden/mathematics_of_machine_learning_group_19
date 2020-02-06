@@ -293,68 +293,68 @@
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}67}]:} \PY{c+c1}{\PYZsh{} PRINcipal COMPonent calculator}
-         \PY{c+c1}{\PYZsh{}   Calculates the principal components of a collection of points.}
-         \PY{c+c1}{\PYZsh{} Input:}
-         \PY{c+c1}{\PYZsh{}   X \PYZhy{} D\PYZhy{}by\PYZhy{}N data matrix of N points in D dimensions.}
-         \PY{c+c1}{\PYZsh{} Output:}
-         \PY{c+c1}{\PYZsh{}   W \PYZhy{} A D\PYZhy{}by\PYZhy{}M matrix containing the M principal components of the data.}
-         \PY{c+c1}{\PYZsh{}   Z \PYZhy{} A M\PYZhy{}by\PYZhy{}N matrix containing the latent variables of the data.}
-         \PY{c+c1}{\PYZsh{}   mu \PYZhy{} A D\PYZhy{}by\PYZhy{}1 vector containing the mean of the data.}
-         \PY{c+c1}{\PYZsh{}   lambda \PYZhy{} A vector containing the eigenvalues associated with the above principal components.}
-         
-         \PY{k}{def} \PY{n+nf}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{M}\PY{p}{)}\PY{p}{:}
-             \PY{n}{mu} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
-             \PY{n}{X\PYZus{}centered} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{mu}
-             \PY{n}{S} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X\PYZus{}centered}\PY{p}{)}\PY{p}{)}
-             \PY{n}{eig\PYZus{}vals}\PY{p}{,} \PY{n}{eig\PYZus{}vecs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{eigh}\PY{p}{(}\PY{n}{S}\PY{p}{)}
-             \PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argpartition}\PY{p}{(}\PY{n}{eig\PYZus{}vals}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
-             \PY{n}{lambdas} \PY{o}{=} \PY{n}{eig\PYZus{}vals}\PY{p}{[}\PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds}\PY{p}{]}
-             \PY{n}{W} \PY{o}{=} \PY{n}{eig\PYZus{}vecs}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds}\PY{p}{]}
-             \PY{n}{Z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{W}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X\PYZus{}centered}\PY{p}{)}\PY{p}{)} 
-         
-             \PY{k}{return} \PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{lambdas}
+{\color{incolor}In [{\color{incolor}125}]:} \PY{c+c1}{\PYZsh{} PRINcipal COMPonent calculator}
+          \PY{c+c1}{\PYZsh{}   Calculates the principal components of a collection of points.}
+          \PY{c+c1}{\PYZsh{} Input:}
+          \PY{c+c1}{\PYZsh{}   X \PYZhy{} D\PYZhy{}by\PYZhy{}N data matrix of N points in D dimensions.}
+          \PY{c+c1}{\PYZsh{} Output:}
+          \PY{c+c1}{\PYZsh{}   W \PYZhy{} A D\PYZhy{}by\PYZhy{}M matrix containing the M principal components of the data.}
+          \PY{c+c1}{\PYZsh{}   Z \PYZhy{} A M\PYZhy{}by\PYZhy{}N matrix containing the latent variables of the data.}
+          \PY{c+c1}{\PYZsh{}   mu \PYZhy{} A D\PYZhy{}by\PYZhy{}1 vector containing the mean of the data.}
+          \PY{c+c1}{\PYZsh{}   lambda \PYZhy{} A vector containing the eigenvalues associated with the above principal components.}
+          
+          \PY{k}{def} \PY{n+nf}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{M}\PY{p}{)}\PY{p}{:}
+              \PY{n}{mu} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{X\PYZus{}centered} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{mu}
+              \PY{n}{S} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cov}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X\PYZus{}centered}\PY{p}{)}\PY{p}{)}
+              \PY{n}{eig\PYZus{}vals}\PY{p}{,} \PY{n}{eig\PYZus{}vecs} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{eigh}\PY{p}{(}\PY{n}{S}\PY{p}{)}
+              \PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argpartition}\PY{p}{(}\PY{n}{eig\PYZus{}vals}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{M}\PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{lambdas} \PY{o}{=} \PY{n}{eig\PYZus{}vals}\PY{p}{[}\PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds}\PY{p}{]}
+              \PY{n}{W} \PY{o}{=} \PY{n}{eig\PYZus{}vecs}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{top\PYZus{}M\PYZus{}eigs\PYZus{}inds}\PY{p}{]}
+              \PY{n}{Z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{W}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{X\PYZus{}centered}\PY{p}{)}\PY{p}{)} 
+          
+              \PY{k}{return} \PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{lambdas}
 \end{Verbatim}
 
 
     \section{3.2}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{cbcl} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/wyattmadden/Documents/school/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} 
-                             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSU/2020/spring/m508/lab\PYZus{}info/lab\PYZus{}3/cbcl.mat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
-                            \PY{n}{squeeze\PYZus{}me} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
-        
-        \PY{n}{X} \PY{o}{=} \PY{n}{cbcl}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-        
-        \PY{n}{X\PYZus{}shaped} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                      \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                      \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
-        
-        \PY{n}{x\PYZus{}axis\PYZus{}points} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+{\color{incolor}In [{\color{incolor}126}]:} \PY{n}{cbcl} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/wyattmadden/Documents/school/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} 
+                               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSU/2020/spring/m508/lab\PYZus{}info/lab\PYZus{}3/cbcl.mat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                              \PY{n}{squeeze\PYZus{}me} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+          
+          \PY{n}{X} \PY{o}{=} \PY{n}{cbcl}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          
+          \PY{n}{X\PYZus{}shaped} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                        \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                        \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{x\PYZus{}axis\PYZus{}points} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                    \PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          \PY{n}{y\PYZus{}axis\PYZus{}points} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
                                   \PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-        \PY{n}{y\PYZus{}axis\PYZus{}points} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                \PY{n}{X\PYZus{}shaped}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
-        
-        \PY{k}{def} \PY{n+nf}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{colour}\PY{p}{,} \PY{n}{title}\PY{p}{)}\PY{p}{:}
-            \PY{n}{cmap} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{cubehelix\PYZus{}palette}\PY{p}{(}\PY{n}{as\PYZus{}cmap}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
-            \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
-            \PY{n}{points} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x\PYZus{}axis\PYZus{}points}\PY{p}{,} 
-                                \PY{n}{y\PYZus{}axis\PYZus{}points}\PY{p}{,} 
-                                \PY{n}{c} \PY{o}{=} \PY{n}{colour}\PY{p}{,}
-                                \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{,} 
-                                \PY{n}{cmap} \PY{o}{=} \PY{n}{cmap}\PY{p}{)} 
-            \PY{n}{f}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{points}\PY{p}{)}
-            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
-        
-        \PY{n}{rand\PYZus{}ints\PYZus{}25} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{139}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}
-            
-        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{p}{:}
-            \PY{n}{one\PYZus{}face} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]}
-            \PY{n}{X\PYZus{}shaped} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                      \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                      \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
-            
-            \PY{n}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{one\PYZus{}face}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{th face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{colour}\PY{p}{,} \PY{n}{title}\PY{p}{)}\PY{p}{:}
+              \PY{n}{cmap} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{cubehelix\PYZus{}palette}\PY{p}{(}\PY{n}{as\PYZus{}cmap}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+              \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+              \PY{n}{points} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x\PYZus{}axis\PYZus{}points}\PY{p}{,} 
+                                  \PY{n}{y\PYZus{}axis\PYZus{}points}\PY{p}{,} 
+                                  \PY{n}{c} \PY{o}{=} \PY{n}{colour}\PY{p}{,}
+                                  \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{,} 
+                                  \PY{n}{cmap} \PY{o}{=} \PY{n}{cmap}\PY{p}{)} 
+              \PY{n}{f}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{points}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+          
+          \PY{n}{rand\PYZus{}ints\PYZus{}25} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{139}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}
+              
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{p}{:}
+              \PY{n}{one\PYZus{}face} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]}
+              \PY{n}{X\PYZus{}shaped} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                        \PY{n+nb}{int}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
+                                        \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+              
+              \PY{n}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{one\PYZus{}face}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{th face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -492,13 +492,13 @@
     \section{3.3}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{lambdas} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
-        
-        \PY{n}{mean\PYZus{}face} \PY{o}{=} \PY{n}{mu}
-        
-        
-        \PY{n}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{mean\PYZus{}face}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean Face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-            
+{\color{incolor}In [{\color{incolor}127}]:} \PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{lambdas} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+          
+          \PY{n}{mean\PYZus{}face} \PY{o}{=} \PY{n}{mu}
+          
+          
+          \PY{n}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{mean\PYZus{}face}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Mean Face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              
 \end{Verbatim}
 
 
@@ -508,13 +508,13 @@
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vecs} \PY{o}{=} \PY{n}{W} 
-        \PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vals} \PY{o}{=} \PY{n}{lambdas} 
-        
-        \PY{n+nb}{iter} \PY{o}{=} \PY{l+m+mi}{0}
-        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vecs}\PY{p}{)}\PY{p}{:}
-            \PY{n}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{p}{(}\PY{n+nb}{iter}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{th Leading EigVector}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-            \PY{n+nb}{iter} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+{\color{incolor}In [{\color{incolor}128}]:} \PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vecs} \PY{o}{=} \PY{n}{W} 
+          \PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vals} \PY{o}{=} \PY{n}{lambdas} 
+          
+          \PY{n+nb}{iter} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vecs}\PY{p}{)}\PY{p}{:}
+              \PY{n}{plot\PYZus{}19\PYZus{}grid}\PY{p}{(}\PY{n}{i}\PY{p}{,} \PY{n+nb}{str}\PY{p}{(}\PY{p}{(}\PY{n+nb}{iter}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{th Leading EigVector}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              \PY{n+nb}{iter} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
 \end{Verbatim}
 
 
@@ -558,12 +558,12 @@ Fifth: Location of eyes and mouth expression.
     \section{3.4}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}two\PYZus{}prin\PYZus{}comps}\PY{p}{(}\PY{n}{eig\PYZus{}vecs}\PY{p}{,} \PY{n}{X}\PY{p}{)}\PY{p}{:}
-            \PY{n}{two\PYZus{}dim\PYZus{}red} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{eig\PYZus{}vecs}\PY{p}{,} \PY{n}{X}\PY{p}{)}
-            \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
-            \PY{n}{points} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{two\PYZus{}dim\PYZus{}red}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
-                                \PY{n}{two\PYZus{}dim\PYZus{}red}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
-                                \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}129}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}two\PYZus{}prin\PYZus{}comps}\PY{p}{(}\PY{n}{eig\PYZus{}vecs}\PY{p}{,} \PY{n}{X}\PY{p}{)}\PY{p}{:}
+              \PY{n}{two\PYZus{}dim\PYZus{}red} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{eig\PYZus{}vecs}\PY{p}{,} \PY{n}{X}\PY{p}{)}
+              \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+              \PY{n}{points} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{two\PYZus{}dim\PYZus{}red}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                  \PY{n}{two\PYZus{}dim\PYZus{}red}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                                  \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.1}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -577,9 +577,9 @@ apparent relationship between overall shading and mouth/eye shading.
     \section{3.5}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{eig\PYZus{}vecs\PYZus{}2\PYZus{}and\PYZus{}3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vecs}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}
-            
-        \PY{n}{plot\PYZus{}two\PYZus{}prin\PYZus{}comps}\PY{p}{(}\PY{n}{eig\PYZus{}vecs\PYZus{}2\PYZus{}and\PYZus{}3}\PY{p}{,} \PY{n}{X}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}130}]:} \PY{n}{eig\PYZus{}vecs\PYZus{}2\PYZus{}and\PYZus{}3} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vecs}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}
+              
+          \PY{n}{plot\PYZus{}two\PYZus{}prin\PYZus{}comps}\PY{p}{(}\PY{n}{eig\PYZus{}vecs\PYZus{}2\PYZus{}and\PYZus{}3}\PY{p}{,} \PY{n}{X}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -588,19 +588,39 @@ apparent relationship between overall shading and mouth/eye shading.
     \end{center}
     { \hspace*{\fill} \\}
     
+    It appears that the second and third principal components have minimal
+correlation. This is not too surprising, as I would not expect nose and
+mouth contours, and left to right shading, to have much relationship.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}131}]:} \PY{n}{eig\PYZus{}vecs\PYZus{}4\PYZus{}and\PYZus{}5} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vecs}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{5}\PY{p}{]}
+              
+          
+          \PY{n}{plot\PYZus{}two\PYZus{}prin\PYZus{}comps}\PY{p}{(}\PY{n}{eig\PYZus{}vecs\PYZus{}4\PYZus{}and\PYZus{}5}\PY{p}{,} \PY{n}{X}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    It appears that the principal components corresponding with brow and
+mouth expressions are not very correlated, interestingly.
+
     \section{3.6}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1} \PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vals}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}132}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1} \PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{lead\PYZus{}5\PYZus{}eig\PYZus{}vals}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} [<matplotlib.lines.Line2D at 0x1a1fefbe10>]
+{\color{outcolor}Out[{\color{outcolor}132}]:} [<matplotlib.lines.Line2D at 0x1a468bbb38>]
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -613,149 +633,232 @@ reduction, M should be at least four.
     \section{3.7}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}72}]:} \PY{n}{rand\PYZus{}ints\PYZus{}25} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{139}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
-         \PY{n}{m\PYZus{}enumerated} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{]}\PY{p}{)}
-         \PY{n}{x\PYZus{}approx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{o}{*}\PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}
-         
-         
-         \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{0}
-         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{m\PYZus{}enumerated}\PY{p}{:}
-             \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{p}{:}
-                 \PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{lambdas} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{i}\PY{p}{)}
-                 \PY{n}{x\PYZus{}approx}\PY{p}{[}\PY{p}{(}\PY{n}{k} \PY{o}{*} \PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{p}{)}\PY{p}{:}\PY{p}{(}\PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{k}\PY{p}{)}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{mu}
-                 \PY{n}{k} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
-         
-         \PY{n}{faces} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n}{m\PYZus{}enumerated}\PY{p}{,} \PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{p}{)}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{random\PYZus{}faces}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{p}{,} \PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{p}{)}\PY{p}{,} \PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZus{}coord}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{x\PYZus{}axis\PYZus{}points}\PY{p}{,} \PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y\PYZus{}coord}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{y\PYZus{}axis\PYZus{}points}\PY{p}{,} \PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{,}
-                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{faces\PYZus{}approx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{x\PYZus{}approx}\PY{p}{)}\PY{p}{\PYZcb{}}
-         
-         \PY{n}{faces} \PY{o}{=} \PY{n}{pand}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{faces}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}140}]:} \PY{n}{rand\PYZus{}ints\PYZus{}10} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{rand\PYZus{}ints\PYZus{}25}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+          \PY{n}{m\PYZus{}enumerated} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{]}\PY{p}{)}
+          \PY{n}{x\PYZus{}approx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{o}{*}\PY{n}{rand\PYZus{}ints\PYZus{}10}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}
+          
+          
+          \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{m\PYZus{}enumerated}\PY{p}{:}
+              \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n}{rand\PYZus{}ints\PYZus{}10}\PY{p}{:}
+                  \PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{lambdas} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{i}\PY{p}{)}
+                  \PY{n}{x\PYZus{}approx}\PY{p}{[}\PY{p}{(}\PY{n}{k} \PY{o}{*} \PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{p}{)}\PY{p}{:}\PY{p}{(}\PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{k}\PY{p}{)}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{W}\PY{p}{,} \PY{n}{Z}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{j}\PY{p}{]} \PY{o}{+} \PY{n}{mu}
+                  \PY{n}{k} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+          
+          \PY{n}{faces} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n}{m\PYZus{}enumerated}\PY{p}{,} \PY{n}{rand\PYZus{}ints\PYZus{}10}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{p}{)}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{random\PYZus{}faces}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{n}{rand\PYZus{}ints\PYZus{}10}\PY{p}{,} \PY{l+m+mi}{19}\PY{o}{*}\PY{l+m+mi}{19}\PY{p}{)}\PY{p}{,} \PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZus{}coord}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{x\PYZus{}axis\PYZus{}points}\PY{p}{,} \PY{n}{rand\PYZus{}ints\PYZus{}10}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y\PYZus{}coord}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tile}\PY{p}{(}\PY{n}{y\PYZus{}axis\PYZus{}points}\PY{p}{,} \PY{n}{rand\PYZus{}ints\PYZus{}10}\PY{o}{.}\PY{n}{size}\PY{o}{*}\PY{n}{m\PYZus{}enumerated}\PY{o}{.}\PY{n}{size}\PY{p}{)}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{faces\PYZus{}approx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{x\PYZus{}approx}\PY{p}{)}\PY{p}{\PYZcb{}}
+          
+          \PY{n}{faces} \PY{o}{=} \PY{n}{pand}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{faces}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}72}]:}        M  random\_faces  x\_coord  y\_coord  faces\_approx
-         0      1            25       18       18      0.363026
-         1      1            25       18       17      0.404401
-         2      1            25       18       16      0.418836
-         3      1            25       18       15      0.414741
-         4      1            25       18       14      0.431306
-         5      1            25       18       13      0.469787
-         6      1            25       18       12      0.527512
-         7      1            25       18       11      0.584590
-         8      1            25       18       10      0.617562
-         9      1            25       18        9      0.626386
-         10     1            25       18        8      0.607084
-         11     1            25       18        7      0.570492
-         12     1            25       18        6      0.527732
-         13     1            25       18        5      0.491100
-         14     1            25       18        4      0.467950
-         15     1            25       18        3      0.455584
-         16     1            25       18        2      0.437411
-         17     1            25       18        1      0.414428
-         18     1            25       18        0      0.373515
-         19     1            25       17       18      0.454016
-         20     1            25       17       17      0.483078
-         21     1            25       17       16      0.459860
-         22     1            25       17       15      0.426264
-         23     1            25       17       14      0.430649
-         24     1            25       17       13      0.468876
-         25     1            25       17       12      0.552107
-         26     1            25       17       11      0.632521
-         27     1            25       17       10      0.668545
-         28     1            25       17        9      0.672978
-         29     1            25       17        8      0.649516
-         {\ldots}   ..           {\ldots}      {\ldots}      {\ldots}           {\ldots}
-         7190  25            43        1       10      0.558612
-         7191  25            43        1        9      0.573366
-         7192  25            43        1        8      0.569104
-         7193  25            43        1        7      0.546560
-         7194  25            43        1        6      0.498241
-         7195  25            43        1        5      0.439064
-         7196  25            43        1        4      0.405226
-         7197  25            43        1        3      0.405198
-         7198  25            43        1        2      0.410108
-         7199  25            43        1        1      0.395521
-         7200  25            43        1        0      0.357467
-         7201  25            43        0       18      0.282639
-         7202  25            43        0       17      0.291208
-         7203  25            43        0       16      0.300475
-         7204  25            43        0       15      0.270345
-         7205  25            43        0       14      0.229803
-         7206  25            43        0       13      0.287186
-         7207  25            43        0       12      0.384215
-         7208  25            43        0       11      0.469835
-         7209  25            43        0       10      0.515413
-         7210  25            43        0        9      0.527880
-         7211  25            43        0        8      0.520276
-         7212  25            43        0        7      0.493546
-         7213  25            43        0        6      0.450504
-         7214  25            43        0        5      0.405428
-         7215  25            43        0        4      0.381773
-         7216  25            43        0        3      0.374712
-         7217  25            43        0        2      0.362616
-         7218  25            43        0        1      0.337710
-         7219  25            43        0        0      0.289022
-         
-         [7220 rows x 5 columns]
-\end{Verbatim}
-            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}73}]:} \PY{n}{g} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{FacetGrid}\PY{p}{(}\PY{n}{faces}\PY{p}{,} \PY{n}{col} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{row} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{random\PYZus{}faces}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{faces\PYZus{}approx}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{GnBu\PYZus{}d}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-         \PY{n}{g}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}coord}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y\PYZus{}coord}\PY{l+s+s2}{\PYZdq{}}
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               
-               \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}141}]:} \PY{n}{g} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{FacetGrid}\PY{p}{(}\PY{n}{faces}\PY{p}{,} \PY{n}{col} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{row} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{random\PYZus{}faces}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{faces\PYZus{}approx}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{palette}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{GnBu\PYZus{}d}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{g}\PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}coord}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y\PYZus{}coord}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{250}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}73}]:} <seaborn.axisgrid.FacetGrid at 0x1a2dcfb898>
+{\color{outcolor}Out[{\color{outcolor}141}]:} <seaborn.axisgrid.FacetGrid at 0x1a46df0400>
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{3.8}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}102}]:} \PY{n}{mat} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/wyattmadden/Documents/school/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} 
+                               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSU/2020/spring/m508/lab\PYZus{}info/lab\PYZus{}3/mnist.mat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{X} \PY{o}{=} \PY{n}{mat}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+          
+          \PY{k}{def} \PY{n+nf}{faceplot}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{i}\PY{p}{)}\PY{p}{:}
+              \PY{n}{face} \PY{o}{=} \PY{p}{[}\PY{n}{row}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{k}{for} \PY{n}{row} \PY{o+ow}{in} \PY{n}{X}\PY{p}{]}
+              \PY{n}{face\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{face}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,}\PY{l+m+mi}{28}\PY{p}{)}\PY{p}{)}
+              \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{face\PYZus{}mat}\PY{p}{)}
+              \PY{k}{return}\PY{p}{(}\PY{n}{fig}\PY{p}{)}
+              
+          \PY{n}{pca\PYZus{}mnist} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}102}]:} <matplotlib.image.AxesImage at 0x1a2fda6198>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}103}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}103}]:} <matplotlib.image.AxesImage at 0x1a264dd390>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}104}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}104}]:} <matplotlib.image.AxesImage at 0x1a26546978>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}111}]:} \PY{n}{pca\PYZus{}mnist} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+          \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}111}]:} <matplotlib.image.AxesImage at 0x1a1d87b978>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}110}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}110}]:} <matplotlib.image.AxesImage at 0x1a2fd55898>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}112}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}112}]:} <matplotlib.image.AxesImage at 0x1a1d9e47f0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    It does not appear like the letters are coming through very clearly in
+the principal components.
+
+    \section{4}\label{section}
+
+Visualizing the 3rd principle component it looks like a circle. The
+latent variable, z, should have high scores for the 0's in the dataset
+and low scores for the 1s. Look at pca{[}1{]}, the z scores, then grab
+the 3rd part of the array, then just plot it.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}114}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}114}]:} [<matplotlib.lines.Line2D at 0x1a1db79f98>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}116}]:} \PY{n}{pca\PYZus{}mnist} \PY{o}{=} \PY{n}{pca}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+          \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}116}]:} <matplotlib.image.AxesImage at 0x1a1dcafda0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}117}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}117}]:} <matplotlib.image.AxesImage at 0x1a2f235d30>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}118}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}118}]:} <matplotlib.image.AxesImage at 0x1a2f2a8e10>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}119}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}119}]:} <matplotlib.image.AxesImage at 0x1a2fdcdcc0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_36_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}120}]:} \PY{n}{faceplot}\PY{p}{(}\PY{n}{pca\PYZus{}mnist}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{p}{,}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}120}]:} <matplotlib.image.AxesImage at 0x1a30123c50>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_37_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
