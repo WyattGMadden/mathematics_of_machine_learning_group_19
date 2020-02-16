@@ -378,7 +378,7 @@
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{)}
          
          \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,} \PY{n}{basis} \PY{o}{=} \PY{n}{hat\PYZus{}basis}\PY{p}{,} 
                             \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
@@ -400,7 +400,7 @@ points, especially on the lower end of the x space.
     \section{3.3}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{hat\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{hat\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
                            \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
          \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
@@ -412,7 +412,7 @@ points, especially on the lower end of the x space.
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{hat\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{hat\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
                            \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
          \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
@@ -425,38 +425,32 @@ points, especially on the lower end of the x space.
     
     \section{3.4}\label{section}
 
+    For higher mu values, the fit appears to be more determined by the data,
+while the overall pattern of the fit is not changing across mu values.
+For example, for mu = 10,000, the fit is overlaid across every data
+point, indicating a likely overfit. For mu = 1, the fit is closer to a
+flat line, and does not pick up on the sigmoidal shape of the data.
+
     \section{3.5}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
                            \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
          \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10,000}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_0.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \section{3.6}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
                            \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
          \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
-                           \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
-         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -465,7 +459,26 @@ points, especially on the lower end of the x space.
     \end{center}
     { \hspace*{\fill} \\}
     
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
+         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
     \section{3.7}\label{section}
+
+    Mu can be interpretted fairly similarly as in the hat basis case. For mu
+= 10,000, the fit is extremely responsive to the data, and responds
+chaotically outside the range of the observed data. For mu = 1, the fit
+does not appear to be responsive enough. Mu = 10 is just right. The main
+difference between the gaussian basis and the hat basis, is the hat
+basis results in a much choppier fit.
 
     \section{3.8}\label{section}
 
@@ -504,11 +517,24 @@ points, especially on the lower end of the x space.
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \section{3.9}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{sq\PYZus{}errors\PYZus{}and\PYZus{}mus}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{sq\PYZus{}errors}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} 16
+\end{Verbatim}
+            
+    According the the above calculations, mu of 16 (for an integer value)
+performs best on the data. This is because a mu of 16 results in the
+lowest test error, ie. the best tradeoff between over and under fitting.
 
     \section{3.10}\label{section}
 
@@ -536,10 +562,22 @@ points, especially on the lower end of the x space.
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{m\PYZus{}sq\PYZus{}errors\PYZus{}and\PYZus{}mus}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{m\PYZus{}sq\PYZus{}errors}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:} 10
+\end{Verbatim}
+            
+    Following similar arguments as in the mu assessement, an M of 10
+provides the best tradeoff between over and under fitting.
+
 
     % Add a bibliography block to the postdoc
     
