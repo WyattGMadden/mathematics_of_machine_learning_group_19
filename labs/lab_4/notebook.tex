@@ -339,38 +339,57 @@
         
         \PY{n}{x} \PY{o}{=} \PY{n}{lab\PYZus{}4\PYZus{}dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
         \PY{n}{t} \PY{o}{=} \PY{n}{lab\PYZus{}4\PYZus{}dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        
+        \PY{n}{data\PYZus{}orig} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,}
+                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t}\PY{p}{\PYZcb{}}
+        
+        \PY{n}{data\PYZus{}orig} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data\PYZus{}orig}\PY{p}{)}
 \end{Verbatim}
 
 
     \section{3.2}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{hat\PYZus{}ten\PYZus{}10000} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
-                                \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
-                                \PY{n}{params} \PY{o}{=} \PY{n}{hat\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                                \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}hat}\PY{p}{,} 
-                                \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{)}
-         
-         \PY{n}{hat\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hat\PYZus{}ten\PYZus{}10000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{hat\PYZus{}ten\PYZus{}10000}\PY{p}{)}\PY{p}{,} 
-                                           \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{hat\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                                                          \PY{n}{func\PYZus{}hat}\PY{p}{,} 
-                                                                          \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,}
-                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t}\PY{p}{\PYZcb{}}
-         
-         \PY{n}{hat\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{hat\PYZus{}df}\PY{p}{)}
-         
-         \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hat\PYZus{}ten\PYZus{}10000}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}
-         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10,000}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}43}]:} [Text(0.5,1,'mu = 10,000')]
-\end{Verbatim}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}function to automate fitting process}
+        \PY{k}{def} \PY{n+nf}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{basis}\PY{p}{,} \PY{n}{func}\PY{p}{,} \PY{n}{mu}\PY{p}{,} \PY{n}{M}\PY{p}{,} \PY{n}{at}\PY{p}{)}\PY{p}{:}
+            \PY{n}{fits} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
+                          \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
+                          \PY{n}{params} \PY{o}{=} \PY{n}{basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n}{M}\PY{p}{)}\PY{p}{,}
+                          \PY{n}{func} \PY{o}{=} \PY{n}{func}\PY{p}{,} 
+                          \PY{n}{mu} \PY{o}{=} \PY{n}{mu}\PY{p}{)}
+            \PY{n}{preds\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fits}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{fits}\PY{p}{,} 
+                                          \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} 
+                                                                  \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} 
+                                                                  \PY{n}{M}\PY{p}{)}\PY{p}{,} 
+                                                                         \PY{n}{func}\PY{p}{,} 
+                                                                         \PY{n}{at}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{at}\PY{p}{\PYZcb{}}
+            \PY{n}{preds\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{preds\PYZus{}df}\PY{p}{)}
+            \PY{k}{return} \PY{n}{preds\PYZus{}df}
+        
+        \PY{c+c1}{\PYZsh{}function to automate plotting}
+        \PY{k}{def} \PY{n+nf}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{preds}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{title}\PY{p}{)}\PY{p}{:}
+            \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{fits}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{preds}\PY{p}{)}
+            \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{data}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{n}{title}\PY{p}{)}
             
+            
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{100}\PY{p}{)}
+         
+         \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,} \PY{n}{basis} \PY{o}{=} \PY{n}{hat\PYZus{}basis}\PY{p}{,} 
+                            \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                            \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
+         
+         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10,000}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_5_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -381,56 +400,26 @@ points, especially on the lower end of the x space.
     \section{3.3}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{hat\PYZus{}ten\PYZus{}10} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
-                             \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
-                             \PY{n}{params} \PY{o}{=} \PY{n}{hat\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                             \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}hat}\PY{p}{,} 
-                             \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
-         \PY{n}{hat\PYZus{}ten\PYZus{}1} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
-                             \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
-                             \PY{n}{params} \PY{o}{=} \PY{n}{hat\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                             \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}hat}\PY{p}{,} 
-                             \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
-         
-         \PY{n}{hat\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hat\PYZus{}ten\PYZus{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{hat\PYZus{}ten\PYZus{}10}\PY{p}{)}\PY{p}{,} 
-                                           \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{hat\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                                                          \PY{n}{func\PYZus{}hat}\PY{p}{,} 
-                                                                          \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                   \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hat\PYZus{}ten\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{hat\PYZus{}ten\PYZus{}1}\PY{p}{)}\PY{p}{,} 
-                                           \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{hat\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                                                          \PY{n}{func\PYZus{}hat}\PY{p}{,} 
-                                                                          \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,}
-                  \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t}\PY{p}{\PYZcb{}}
-         
-         \PY{n}{hat\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{hat\PYZus{}df}\PY{p}{)}
-         
-         \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hat\PYZus{}ten\PYZus{}10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}
-         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{hat\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
+         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}44}]:} [Text(0.5,1,'mu = 10')]
-\end{Verbatim}
-            
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hat\PYZus{}ten\PYZus{}1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}
-         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{hat\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}hat}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
+         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}45}]:} [Text(0.5,1,'mu = 1')]
-\end{Verbatim}
-            
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -439,94 +428,40 @@ points, especially on the lower end of the x space.
     \section{3.5}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{gauss\PYZus{}ten\PYZus{}10000} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
-                                \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
-                                \PY{n}{params} \PY{o}{=} \PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                                \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}gauss}\PY{p}{,} 
-                                \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{)}
-         
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gauss\PYZus{}ten\PYZus{}10000}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{gauss\PYZus{}ten\PYZus{}10000}\PY{p}{)}\PY{p}{,} 
-                                           \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                                                          \PY{n}{func\PYZus{}gauss}\PY{p}{,} 
-                                                                          \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t}\PY{p}{\PYZcb{}}
-         
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{gauss\PYZus{}df}\PY{p}{)}
-         
-         \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gauss\PYZus{}ten\PYZus{}10000}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{gauss\PYZus{}df}\PY{p}{)}
-         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10,000}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{5}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
+         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10,000}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}48}]:} [Text(0.5,1,'mu = 10,000')]
-\end{Verbatim}
-            
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \section{3.6}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{gauss\PYZus{}ten\PYZus{}10} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
-                               \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
-                               \PY{n}{params} \PY{o}{=} \PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                               \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}gauss}\PY{p}{,} 
-                               \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
-         
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gauss\PYZus{}ten\PYZus{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{gauss\PYZus{}ten\PYZus{}10}\PY{p}{)}\PY{p}{,} 
-                                           \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                                                          \PY{n}{func\PYZus{}gauss}\PY{p}{,} 
-                                                                          \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t}\PY{p}{\PYZcb{}}
-         
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{gauss\PYZus{}df}\PY{p}{)}
-         
-         \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gauss\PYZus{}ten\PYZus{}10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{gauss\PYZus{}df}\PY{p}{)}
-         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
+         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}49}]:} [Text(0.5,1,'mu = 10')]
-\end{Verbatim}
-            
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{gauss\PYZus{}ten\PYZus{}1} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
-                              \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
-                              \PY{n}{params} \PY{o}{=} \PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                              \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}gauss}\PY{p}{,} 
-                              \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
-         
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gauss\PYZus{}ten\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{gauss\PYZus{}ten\PYZus{}1}\PY{p}{)}\PY{p}{,} 
-                                           \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} 
-                                                                          \PY{n}{func\PYZus{}gauss}\PY{p}{,} 
-                                                                          \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t}\PY{p}{\PYZcb{}}
-         
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{gauss\PYZus{}df}\PY{p}{)}
-         
-         \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gauss\PYZus{}ten\PYZus{}1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{gauss\PYZus{}df}\PY{p}{)}
-         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{zero\PYZus{}to\PYZus{}two\PYZus{}pi}\PY{p}{)}
+         \PY{n}{plot\PYZus{}preds\PYZus{}and\PYZus{}data}\PY{p}{(}\PY{n}{fits}\PY{p}{,} \PY{n}{data\PYZus{}orig}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}50}]:} [Text(0.5,1,'mu = 1')]
-\end{Verbatim}
-            
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_0.png}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -534,36 +469,74 @@ points, especially on the lower end of the x space.
 
     \section{3.8}\label{section}
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{lab\PYZus{}4\PYZus{}test} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/wyattmadden/Documents/school/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} 
+                                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MSU/2020/spring/m508/lab\PYZus{}info/lab\PYZus{}4/test.mat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                    \PY{n}{squeeze\PYZus{}me} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         
+         \PY{n}{x\PYZus{}test} \PY{o}{=} \PY{n}{lab\PYZus{}4\PYZus{}test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test\PYZus{}x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{t\PYZus{}test} \PY{o}{=} \PY{n}{lab\PYZus{}4\PYZus{}test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{test\PYZus{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{data\PYZus{}test} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x\PYZus{}test}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t\PYZus{}test}\PY{p}{\PYZcb{}}
+         
+         \PY{n}{data\PYZus{}test} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data\PYZus{}test}\PY{p}{)}
+         \PY{n}{sq\PYZus{}errors} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)}\PY{p}{:}
+             \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{x\PYZus{}test}\PY{p}{)}
+             \PY{n}{sq\PYZus{}errors}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{fits}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fits}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{t\PYZus{}test}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         
+         
+         \PY{n}{sq\PYZus{}errors\PYZus{}and\PYZus{}mus} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)}\PY{p}{,}
+                             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}sq\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{sq\PYZus{}errors}\PY{p}{\PYZcb{}}
+         \PY{n}{sq\PYZus{}errors\PYZus{}and\PYZus{}mus} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{sq\PYZus{}errors\PYZus{}and\PYZus{}mus}\PY{p}{)}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                         \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{total\PYZus{}sq\PYZus{}error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                         \PY{n}{data} \PY{o}{=} \PY{n}{sq\PYZus{}errors\PYZus{}and\PYZus{}mus}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sq Error, Mu 1\PYZhy{}100}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} [Text(0.5,1,'Sq Error, Mu 1-100')]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
     \section{3.9}\label{section}
 
     \section{3.10}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{gauss\PYZus{}ten\PYZus{}1} \PY{o}{=} \PY{n}{lsefit}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{,}
-                              \PY{n}{t} \PY{o}{=} \PY{n}{t}\PY{p}{,}
-                              \PY{n}{params} \PY{o}{=} \PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
-                              \PY{n}{func} \PY{o}{=} \PY{n}{func\PYZus{}gauss}\PY{p}{,} 
-                              \PY{n}{mu} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{m\PYZus{}sq\PYZus{}errors} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{l+m+mi}{99}\PY{p}{)}
          
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gauss\PYZus{}ten\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{gauss\PYZus{}ten\PYZus{}1}\PY{p}{)}\PY{p}{,}
-                                           \PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{better\PYZus{}eval\PYZus{}basis}\PY{p}{(}\PY{n}{gauss\PYZus{}basis}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
-                                                                          \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,}
-                     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{t}\PY{p}{\PYZcb{}}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)}\PY{p}{:}
+             \PY{n}{fits} \PY{o}{=} \PY{n}{df\PYZus{}of\PYZus{}preds}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{gauss\PYZus{}basis}\PY{p}{,} \PY{n}{func\PYZus{}gauss}\PY{p}{,} \PY{l+m+mi}{13}\PY{p}{,} \PY{n}{i}\PY{p}{,}
+                           \PY{n}{at} \PY{o}{=} \PY{n}{x\PYZus{}test}\PY{p}{)}
+             \PY{n}{m\PYZus{}sq\PYZus{}errors}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{fits}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{fits}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{t\PYZus{}test}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
          
-         \PY{n}{gauss\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{gauss\PYZus{}df}\PY{p}{)}
          
-         \PY{n}{sns}\PY{o}{.}\PY{n}{lineplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gauss\PYZus{}ten\PYZus{}1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{gauss\PYZus{}df}\PY{p}{)}
-         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{hat\PYZus{}df}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mu = 1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{m\PYZus{}sq\PYZus{}errors\PYZus{}and\PYZus{}mus} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{101}\PY{p}{)}\PY{p}{,}
+                             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}sq\PYZus{}error}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{m\PYZus{}sq\PYZus{}errors}\PY{p}{\PYZcb{}}
+         \PY{n}{m\PYZus{}sq\PYZus{}errors\PYZus{}and\PYZus{}mus} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{m\PYZus{}sq\PYZus{}errors\PYZus{}and\PYZus{}mus}\PY{p}{)}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                         \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{total\PYZus{}sq\PYZus{}error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} 
+                         \PY{n}{data} \PY{o}{=} \PY{n}{m\PYZus{}sq\PYZus{}errors\PYZus{}and\PYZus{}mus}\PY{p}{)}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Sq Error, M 1\PYZhy{}100}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}51}]:} [Text(0.5,1,'mu = 1')]
+{\color{outcolor}Out[{\color{outcolor}19}]:} [Text(0.5,1,'Sq Error, M 1-100')]
 \end{Verbatim}
             
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_1.png}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
     \end{center}
     { \hspace*{\fill} \\}
     
