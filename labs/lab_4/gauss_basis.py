@@ -10,6 +10,6 @@ import numpy
 def gauss_basis(a, b, num):
     params = numpy.zeros((2, num))
     for n in range(0, num):
-        params[0, n] = a + (n - 1) * (b - a) / (num - 1)
-        params[1, n] = (b - a) / num
+        params[0, n] = a + (n) * (b - a) / (num - 1)
+        params[1, n] = (b - a) / (num)
     return params
