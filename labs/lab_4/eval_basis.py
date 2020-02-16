@@ -18,3 +18,17 @@ def eval_basis(params, xeval):
     return(B)
 
 
+def better_eval_basis(params, func, xeval):
+    len = xeval.shape[0]
+    B = np.zeros(length(xeval), params.shape[1])
+    for j in range(0, params.shape[1]):
+        B[j] = func(xeval, params[:,j]) 
+    return(B)
+
+
+function [B] = eval_basis(params, func, xeval)
+    B = zeros(length(xeval), size(params,2));
+    for j = 1:size(params,2)
+        B(:,j) = func(xeval, params(:,j));
+    end
+end
