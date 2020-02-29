@@ -56,6 +56,7 @@ head(BodySize)
 
 results <- matrix(0, (2*n-2), 6)
 
+#......................................phylofactor step......................................................
 product <- list()
 for (i in 1: (2*n-2))
      {
@@ -66,28 +67,25 @@ for (i in 1: (2*n-2))
   
   product[i] = (0.0001 + sum(is.na(BodySize[grp1,]$BodySize_miss))/length(is.na(BodySize[grp1,]$BodySize)) * sum(is.na(BodySize[grp2,]$BodySize_miss))/length(is.na(BodySize[grp2,]$BodySize)))
 
-  #grp1_miss = getPhyloGroups(tree_miss)[i][[1]][[1]]
-  #grp2_miss = getPhyloGroups(tree_miss)[i][[1]][[2]]
-  
-  #BodySize[grp1,]$basis = 1
+  #create constrast basis 
   BodySize$basis_miss = c(as.numeric(BodySize[grp2,]$basis_miss)*-1, as.numeric(BodySize[grp1,]$basis_miss)*1)
-  #BodySize[grp2,]$basis  = as.numeric(BodySize[grp2,]$basis_miss)*-1
-  #BodySize[grp2,]$basis_miss  = (as.numeric(BodySize[grp2,]$basis_miss)*-1)
-  #BodySize[grp2,]$basis_miss = 0
+  
   
   #Bayesian Posterior Estimate
   S_o = product[i][[1]]
   m_o = 0
-  cov = (BodySize$basis - mean(BodySize$basis)) %*% (BodySize$basis - mean(BodySize$basis))
-  
+
   design.mat = BodySize
   design.mat[is.na(design.mat)] <- 0
   design.mat[(design.mat) == NA] <- 0
   design.mat
   
-  S_n = 1/S_o + design.mat$basis_miss %*% design.mat$basis_miss
-  m_mle = solve((design.mat$basis_miss) %*% design.mat$basis_miss) %*% t(design.mat$basis_miss) %*% (BodySize$BodySize)
-  m_n = 1/S_n * (1/(S_o ) + (design.mat$basis_miss) %*% design.mat$BodySize)
+  #S_n is S_n inverse from the Bishop text, just in case this is confusing to follow
+  S_n = 1/S_o + design.mat$basis_miss %*% design.mat$basis_miss #its essentially always 100 plus something extra
+  m_mle = solve(design.mat$basis_miss %*% design.mat$basis_miss) %*% t(design.mat$basis_miss) %*% (BodySize$BodySize)
+  m_n = 1/S_n * ( design.mat$basis_miss %*% design.mat$BodySize)
+  
+  if ((abs(m_mle) > abs(m_n)) == FALSE ) {break}
   
   resid <- (sqrt((as.numeric(design.mat$BodySize_miss) - m_mle %*% as.numeric(design.mat$basis_miss))^2))
   var_mle = 1/(n - num_miss) * sum(resid, na.rm = TRUE) %*% solve((design.mat$basis_miss) %*% design.mat$basis_miss)
@@ -114,22 +112,29 @@ clade2
 pf_fisher$groups
 getPhyloGroups(tree)[2]
 
-
-
-
-plot.phylo(tree, type = "fan")
 ggtree::ggtree(tree) +
-ggtree::geom_hilight(190)
+   ggtree::geom_hilight(clade1)
 
 phangorn::Descendants(tree,104,'tips')[[1]]
-
-  
-
 
 #how to make predictions for new clades 
 
 group = which.max(results[,3]/results[,4])
+grp1 = getPhyloGroups(tree)[group][[1]][[1]]
+grp2 = getPhyloGroups(tree)[group][[1]][[2]]
+
+#create the predictions based on mu 
+
+#create a new variable, and label the boddy size and basis functions NA for these tips
+BodySize$BodySize_test = BodySize$BodySize
+BodySize$basis_test = BodySize$basis
+
+BodySize[!(BodySize$V2 %in% miss_tip),]$BodySize_test = NA
+BodySize[!(BodySize$V2 %in% miss_tip),]$basis_test = NA
 
 
+BodySize$basis_test = c(as.numeric(BodySize[grp2,]$basis_test)*-1, as.numeric(BodySize[grp1,]$basis_test)*1)
 
+(BodySize$basis_test * results[group,3] - BodySize$BodySize_test)^2 %>% sum(na.rm=TRUE)
+(BodySize$basis_test * results[group,1] - BodySize$BodySize_test)^2 %>% sum(na.rm=TRUE)
 
