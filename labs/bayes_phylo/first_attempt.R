@@ -22,7 +22,9 @@ BodySize[clade1] <-rlnorm(length(clade1))*4
 BodySize[clade2] <-rlnorm(length(clade2))/4
 
 BodySize = as.data.frame(cbind(BodySize, tree$tip.label, basis = 1))
-miss_tip = sample(tree$tip.label, 20)
+
+num_miss = 20
+miss_tip = sample(tree$tip.label, num_miss)
 
 #first drop tips from tree
 tree_miss <- ape::drop.tip(tree, tree$tip.label[tree$tip.label %in% miss_tip])
@@ -38,7 +40,7 @@ BodySize$BodySize = as.numeric(BodySize$BodySize)
 
 head(BodySize)
 
-results <- matrix(0, (2*n-2), 5)
+results <- matrix(0, (2*n-2), 6)
 
 
 product <- list()
@@ -60,7 +62,7 @@ for (i in 1: (2*n-2))
   #BodySize[grp2,]$basis_miss  = (as.numeric(BodySize[grp2,]$basis_miss)*-1)
   #BodySize[grp2,]$basis_miss = 0
   
-  #Bayesian Posterior Estimate 
+  #Bayesian Posterior Estimate
   S_o = product[i][[1]]
   m_o = 0
   cov = (BodySize$basis - mean(BodySize$basis)) %*% (BodySize$basis - mean(BodySize$basis))
@@ -74,10 +76,23 @@ for (i in 1: (2*n-2))
   m_mle = solve((design.mat$basis_miss) %*% design.mat$basis_miss) %*% t(design.mat$basis_miss) %*% (BodySize$BodySize)
   m_n = 1/S_n * (1/(S_o ) + (design.mat$basis_miss) %*% design.mat$BodySize)
   
-  results[i, ] <- unlist(c(m_mle, m_n, S_n, product[i][[1]], i))
+  resid <- (sqrt((as.numeric(design.mat$BodySize_miss) - m_mle %*% as.numeric(design.mat$basis_miss))^2))
+  var_mle = 1/(n - num_miss) * sum(resid, na.rm = TRUE) %*% solve((design.mat$basis_miss) %*% design.mat$basis_miss)
+  
+  results[i, ] <- unlist(c(m_mle, var_mle, m_n, S_n, product[i][[1]], i))
 }
 
-which.max(results[,2]/results[,3])
+which.max(results[,3]/results[,4])
+which.max(results[,1]/results[,2])
+plot(results[,1]/results[,2], results[,3]/results[,4])
 
-plot(results[,1], results[,2])
+pf_fisher <-twoSampleFactor(log(BodySize$BodySize),tree,nfactors=2,method = "Fisher",ncores = 2)
 
+pf_fisher$groups
+getPhyloGroups(tree)[104]
+
+plot.phylo(tree, type = "fan")
+ggtree::ggtree(tree) +
+ggtree::geom_hilight(190)
+
+  
