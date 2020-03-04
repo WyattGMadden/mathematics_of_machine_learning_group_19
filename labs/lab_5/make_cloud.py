@@ -15,17 +15,28 @@ Created on Wed Mar  4 12:18:24 2020
 
 import numpy as np
 
-def eval_basis(params, xeval):
-    len = xeval.shape[0]
-    B = np.zeros(shape = (params, len))
-    for j in range(0, params):
-        B[j] = np.power(xeval,j).reshape(len,)
-    return(B)
 
 def make_cloud():
     N = 500
     X0 = 6.5* np.random.uniform(low=0.0, high=1.0, size=500)
     X1 = 6.5* np.random.uniform(low=0.0, high=1.0, size=500)
     
+    X0 = [0.5*X0, X0]
+    X0 = [np.sin(X0[0]),  np.sin(X0[1])]
+
+    X1 = [0.5*X1, X1]
+    X1 = [np.sin(X1[0]),  np.sin(X1[1])]
+
+    X = [X0[0], X0[1], X1[0], X1[1]]
     t = [np.repeat(1, 500), -np.repeat(1, 500)]
     return(X, t)
+
+
+data = make_cloud()
+
+plot(data[0][1])
+
+import matplotlib.pyplot as plt
+
+plt.plot(data[0][0], data[0][1])
+plt.plot(data[0][2], data[0][3])
