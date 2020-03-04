@@ -1,14 +1,14 @@
-%% WEAK LEARNer
-%%  Trains a simple classifier which achieves at least 50 percent accuracy.
-%% Inputs 
-%%  X0 - Matrix with, in each column, an observation from class 1.
-%%  X1 - Matrix with, in each column, an observation from class -1.
-%%  W0, W1 - (Optional) Column vectors with data weights. Length must
-%%    correspond to X0 and X1. Defaults to uniform weights.
-%% Outputs
-%%  params - Parameters for the weak trained model (column vector).
+# WEAK LEARNer
+#  Trains a simple classifier which achieves at least 50 percent accuracy.
+# Inputs
+#  X0 - Matrix with, in each column, an observation from class 1.
+#  X1 - Matrix with, in each column, an observation from class -1.
+#  W0, W1 - (Optional) Column vectors with data weights. Length must
+#    correspond to X0 and X1. Defaults to uniform weights.
+# Outputs
+#  params - Parameters for the weak trained model (column vector).
 
-function [params] = weaklearn(X, t, v)
+def weaklearn(X, t, v):
     
     X0 = X(:,t==1);
     X1 = X(:,t==-1);
@@ -63,3 +63,5 @@ function [params] = weaklearn(X, t, v)
         params = -params;
     end
 end
+
+return params
