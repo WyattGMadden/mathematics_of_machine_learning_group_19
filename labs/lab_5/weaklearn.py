@@ -8,11 +8,15 @@
 # Outputs
 #  params - Parameters for the weak trained model (column vector).
 
+t = data[1]
+X = data[0]
+
 def weaklearn(X, t, v):
     
-    X0 = X(:,t==1);
-    X1 = X(:,t==-1);
-    
+    X0 = X.transpose()[t==1];
+    X1 = X.transpose()[t==-1];
+    #fix up to here
+
     if nargin == 2
         W0 = ones(size(X0,2),1);
         W1 = ones(size(X1,2),1);
