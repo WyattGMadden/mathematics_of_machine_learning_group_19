@@ -8,6 +8,8 @@
 # Outputs
 #  params - Parameters for the weak trained model (column vector).
 
+import math
+
 t = data[1]
 X = data[0]
 
@@ -15,21 +17,24 @@ def weaklearn(X, t, v):
     
     X0 = X.transpose()[t==1];
     X1 = X.transpose()[t==-1];
-    #fix up to here
 
-    if nargin == 2
-        W0 = ones(size(X0,2),1);
-        W1 = ones(size(X1,2),1);
-    else
-        W0 = v(t==+1);
-        W1 = v(t==-1);
-    end
+    #if nargin == 2 ##nargin is matlab code for "number of arguments"
+    #    W0 = ones(size(X0,2),1);
+    #    W1 = ones(size(X1,2),1);
+    #else
+    
+        W0 = t[t==+1];
+        W1 = t[t==-1];
+    #end
     
     best_d = 1;
     best_x = 0;
-    best_err = inf;
+    best_err = math.inf; #update python code to use inf value
     is_01 = 1;
     
+    #fixed up to here
+
+
     X = [X0, X1];
     W = [-W0; W1];
     for d = 1:size(X0,1)
