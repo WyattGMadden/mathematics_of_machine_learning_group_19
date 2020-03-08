@@ -21,14 +21,20 @@ def make_cloud():
     X0 = 6.5* np.random.uniform(low=0.0, high=1.0, size=500)
     X1 = 6.5* np.random.uniform(low=0.0, high=1.0, size=500)
     
-    X0 = [0.5*X0, X0]
-    X0 = [np.sin(X0[0]),  np.sin(X0[1])]
+    X0 = np.stack((0.5*X0, X0))
+    X0 = np.stack((np.sin(X0[0]),  np.sin(X0[1])))
 
-    X1 = [0.5*X1, X1]
-    X1 = [np.sin(X1[0]),  np.sin(X1[1])]
+    X1 = np.stack((0.5*X1, X1))
+    X1 = np.stack((np.sin(X1[0]),  np.sin(X1[1])))
 
-    X = [X0[0], X0[1], X1[0], X1[1]]
-    t = [np.repeat(1, 500), -np.repeat(1, 500)]
+    X = np.vstack((X0, X1))
+    
+    a = np.array(np.repeat(1, 500))
+    b = np.array(np.repeat(1, 500))
+    t = np.concatenate((a,b),axis=0)
+    
+
+    
     return(X, t)
 
 
