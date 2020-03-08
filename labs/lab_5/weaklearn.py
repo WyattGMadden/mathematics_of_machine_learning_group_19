@@ -8,13 +8,13 @@
 # Outputs
 #  params - Parameters for the weak trained model (column vector).
 
-def weaklearn(X, t, v):
+def weaklearn(X, t, v[optional]):
     
     X0 = X(:,t==1);
     X1 = X(:,t==-1);
     
-    if nargin == 2
-        W0 = ones(size(X0,2),1);
+    if v is None:
+        W0 = np.oones(np.size(X0,2),1);
         W1 = ones(size(X1,2),1);
     else
         W0 = v(t==+1);
