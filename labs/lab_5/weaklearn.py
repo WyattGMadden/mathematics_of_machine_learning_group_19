@@ -42,15 +42,6 @@ def weaklearn(X, t, v):
     
      #fixed up to here
 
-    
-    for x in range(0,np.max(dept)): #go from 0 to the max num in dept
-    print(x)
-    print(x, np.mean(sal[dept == x + 1]))
-    dept_sal[0,x] = np.mean(sal[dept ==x + 1])
-    dept_var[0,x] = np.var(sal[dept==x + 1])
-    
-    
-    
     for d in range(1,X0.shape[1]):
             # i think this is doing one column at a time?
             #for d in range(1,X0.shape[1]):
