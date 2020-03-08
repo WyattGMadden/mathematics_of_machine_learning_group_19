@@ -68,5 +68,5 @@ plot(data[0][1])
 import matplotlib.pyplot as plt
 
 plt.plot(data[0][0], data[0][1])
-plt.plot(data[0][2], data[0][3])
+plt.plot(data[0][, data[0][3])
 '''
