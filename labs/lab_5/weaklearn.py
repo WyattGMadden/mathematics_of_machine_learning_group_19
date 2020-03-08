@@ -8,6 +8,9 @@
 # Outputs
 #  params - Parameters for the weak trained model (column vector).
 
+#data = make_cloud()
+
+
 import math
 
 t = data[1]
@@ -15,8 +18,8 @@ X = data[0]
 
 def weaklearn(X, t, v):
     
-    X0 = X.transpose()[t==1];
-    X1 = X.transpose()[t==-1];
+    X0b = X.transpose()[t==1];
+    X1b = X.transpose()[t==-1];
 
     #if nargin == 2 ##nargin is matlab code for "number of arguments"
     #    W0 = ones(size(X0,2),1);
@@ -32,12 +35,29 @@ def weaklearn(X, t, v):
     best_err = math.inf; #update python code to use inf value
     is_01 = 1;
     
-    #fixed up to here
+    
+    X = np.concatenate((X0b, X1b), axis =0)
 
+    W = np.concatenate((W0, W1),axis=0); #i can't tell if this is what zosso did
+    
+     #fixed up to here
 
-    X = [X0, X1];
-    W = [-W0; W1];
-    for d = 1:size(X0,1)
+    
+    for x in range(0,np.max(dept)): #go from 0 to the max num in dept
+    print(x)
+    print(x, np.mean(sal[dept == x + 1]))
+    dept_sal[0,x] = np.mean(sal[dept ==x + 1])
+    dept_var[0,x] = np.var(sal[dept==x + 1])
+    
+    
+    
+    for d in range(1,X0.shape[1]):
+            # i think this is doing one column at a time?
+            #for d in range(1,X0.shape[1]):
+            # matlab indexes by row first 
+        
+        #i would have guessed we loop through by obs
+        np.sort(X[d,:])
         [~,IX] = sort(X(d,:));
         
         err = cumsum(W(IX));
