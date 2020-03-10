@@ -8,10 +8,10 @@
 # Outputs
 #  params - Parameters for the weak trained model (column vector).
 
-
+import numpy as np
+import math
 
 def weaklearn(X, t, v):
-    
     X0b = X.transpose()[t==1]; #DATA IN CLASS 1
     X1b = X.transpose()[t==-1]; #DATA IN CLASS -1
 
@@ -24,8 +24,8 @@ def weaklearn(X, t, v):
         W0 = np.ones(X0b.shape[0]);
         W1 = np.ones(X1b.shape[0]);
     else:
-        W0 = v(t==+1);
-        W1 = v(t==-1);
+        W0 = v[t==+1];
+        W1 = v[t==-1];
       
     best_d = 1;
     best_x = 0;
@@ -46,8 +46,8 @@ def weaklearn(X, t, v):
 
     for d in range(1,X0b.shape[1]):
          
-        #grab the dth row 
-        #[~,IX] = sort(X(d,:)); ~ means logical "not" in matlab 
+        #grab the dth row
+        #[~,IX] = sort(X(d,:)); ~ means logical "not" in matlab
         
         IX = np.argsort(X[:,d]);
         
@@ -58,7 +58,7 @@ def weaklearn(X, t, v):
         best_01 = sum(W0)  + np.min(err); # + min_cum
         best_01_x = X[IX[min_k],d];
         
-        err = np.cumsum(-W[IX]);        
+        err = np.cumsum(-W[IX]);
         min_cum = np.min(err);
         min_k   = np.argmin(err);
         
@@ -79,8 +79,8 @@ def weaklearn(X, t, v):
             
     beta = np.zeros(X0b.shape[1]);
     beta[best_d] = 1;
-    params = [beta, -best_x];
-    if is_01 == 0:
-        params = -params;
-
+    params = np.append(beta, -best_x);
+    if is_01 == 0: 
+        params = params * -1;
+            
     return(params)
