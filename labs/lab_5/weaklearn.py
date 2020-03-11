@@ -80,7 +80,7 @@ def weaklearn(X, t, v):
     beta = np.zeros(X0b.shape[1]);
     beta[best_d] = 1;
     params = np.append(beta, -best_x);
-    if is_01 == 0: 
+    if is_01 == 1: 
         params = params * -1;
             
     return(params)
