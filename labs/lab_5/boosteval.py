@@ -11,3 +11,11 @@
 function [C] = boosteval(X, params, alpha)
    
 end
+
+
+params = boost_result[0]
+alpha = boost_result[1]
+
+def boosteval(X, params, alpha):
+    
+eval = alpha.transpose().dot(params)
