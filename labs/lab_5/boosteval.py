@@ -13,8 +13,8 @@ function [C] = boosteval(X, params, alpha)
 end
 
 
-params = boost_result[0]
-alpha = boost_result[1]
+params = bl_results[0]
+alpha = bl_results[1]
 
 def boosteval(X, params, alpha):
     
