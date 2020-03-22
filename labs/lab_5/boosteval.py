@@ -8,6 +8,11 @@
 #  C - A matrix with predicted class labels (-1 or 1) for the input
 #    observations in X.
 
+import numpy as np
+from weakeval import *
+from weaklearn import *
+
+
 def boosteval(X, params, alpha):
     
     preds = np.empty((params.shape[0], X.shape[1]))

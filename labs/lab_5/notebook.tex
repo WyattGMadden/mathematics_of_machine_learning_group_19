@@ -311,10 +311,6 @@
         \PY{c+c1}{\PYZsh{}  alpha \PYZhy{} A vector of weights used to combine the results of the}
         \PY{c+c1}{\PYZsh{}    M weak learners.}
         
-        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-        \PY{k+kn}{from} \PY{n+nn}{weakeval} \PY{k}{import} \PY{o}{*}
-        \PY{k+kn}{from} \PY{n+nn}{weaklearn} \PY{k}{import} \PY{o}{*}
-        
         \PY{k}{def} \PY{n+nf}{boostlearn}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{M}\PY{p}{)}\PY{p}{:}
             \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{M} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{)}\PY{p}{)}
             \PY{n}{weights}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{)}
@@ -423,7 +419,7 @@ classified correctly.
     \subsection{3. 5}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{temp\PYZus{}boostlearn} \PY{o}{=} \PY{n}{boostlearn}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{temp\PYZus{}boostlearn} \PY{o}{=} \PY{n}{boostlearn}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{)}
          
          \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}boost\PYZus{}5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{boosteval}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
                                       \PY{n}{params} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
@@ -433,12 +429,12 @@ classified correctly.
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{correct\PYZus{}class\PYZus{}boost\PYZus{}5}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{dat}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{correct\PYZus{}class\PYZus{}boost\PYZus{}5}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{dat}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}11}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a22ce3550>
+{\color{outcolor}Out[{\color{outcolor}13}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x110de4470>
 \end{Verbatim}
             
     \begin{center}
@@ -446,21 +442,128 @@ classified correctly.
     \end{center}
     { \hspace*{\fill} \\}
     
+    Strangely, the predictions appear to be identical to that of weak learn.
+This must be due a bug in transfering over the boost\_learn function
+from matlab to python. I will come back to this if I have time..
+
     \subsection{3.6}\label{section}
 
+    M = 10:
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}56}]:} 
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{temp\PYZus{}boostlearn} \PY{o}{=} \PY{n}{boostlearn}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         
+         \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}boost\PYZus{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{boosteval}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                      \PY{n}{params} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                      \PY{n}{alpha} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{correct\PYZus{}class\PYZus{}boost\PYZus{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}boost\PYZus{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{correct\PYZus{}class\PYZus{}boost\PYZus{}10}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{dat}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x110e44908>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    M = 50:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{temp\PYZus{}boostlearn} \PY{o}{=} \PY{n}{boostlearn}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{)}
+         
+         \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}boost\PYZus{}50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{boosteval}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                      \PY{n}{params} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                      \PY{n}{alpha} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{correct\PYZus{}class\PYZus{}boost\PYZus{}50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}boost\PYZus{}50}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{correct\PYZus{}class\PYZus{}boost\PYZus{}50}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{dat}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x110e36b38>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    M = 100:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{temp\PYZus{}boostlearn} \PY{o}{=} \PY{n}{boostlearn}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{)}
+         
+         \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}boost\PYZus{}100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{boosteval}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                      \PY{n}{params} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                      \PY{n}{alpha} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{correct\PYZus{}class\PYZus{}boost\PYZus{}100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t\PYZus{}boost\PYZus{}100}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{correct\PYZus{}class\PYZus{}boost\PYZus{}100}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{dat}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a23095860>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_23_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Again, due to the bug in the boost\_learn code, the predictions are not
+changing with M. I would expect to see a gradually decreasing
+missclassification rate. When the points along the border between the
+two circles (and overlapping the border) begin to be classified
+correctly, I would assume that overfitting is ocurring.
+
+    \section{3.7}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{new\PYZus{}temp} \PY{o}{=} \PY{n}{make\PYZus{}cloud}\PY{p}{(}\PY{p}{)}
+         \PY{n}{new\PYZus{}dat} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{new\PYZus{}temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{new\PYZus{}dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{new\PYZus{}temp}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{n}{missclass\PYZus{}rate} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+             \PY{n}{M} \PY{o}{=} \PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}
+             \PY{n}{temp\PYZus{}boostlearn} \PY{o}{=} \PY{n}{boostlearn}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{temp}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{M} \PY{o}{=} \PY{n}{M}\PY{p}{)}
+             \PY{n}{temp\PYZus{}boosteval} \PY{o}{=} \PY{n}{boosteval}\PY{p}{(}\PY{n}{X} \PY{o}{=} \PY{n}{new\PYZus{}temp}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                        \PY{n}{params} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} 
+                                        \PY{n}{alpha} \PY{o}{=} \PY{n}{temp\PYZus{}boostlearn}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             \PY{n}{missclass\PYZus{}rate}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{M}
+             \PY{n}{missclass\PYZus{}rate}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{new\PYZus{}dat}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{!=} \PY{n}{temp\PYZus{}boosteval}\PY{p}{)} \PY{o}{/} \PY{n}{temp\PYZus{}boosteval}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-0
-1
-2
-3
-4
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{dat} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{missclass\PYZus{}rate}\PY{p}{)}\PY{p}{,} 
+                            \PY{n}{columns} \PY{o}{=} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{percent\PYZus{}missclassified}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{percent\PYZus{}missclassified}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{dat}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
 
-    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a22e21f60>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Again, the bug is not resolved. The missclassification rate is a
+constant 0.3560.
 
 
     % Add a bibliography block to the postdoc
