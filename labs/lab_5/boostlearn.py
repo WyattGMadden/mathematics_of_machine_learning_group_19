@@ -23,7 +23,6 @@ def boostlearn(X, t, M):
         preds = weakeval(X = X, params = params[i,:])
         pred_correct = (preds == t)
         frac_pred_correct = np.sum(pred_correct) / len(pred_correct)
-        print(frac_pred_correct)
         if frac_pred_correct > 0.5:
             epsilon = np.sum(weights[i, pred_correct]) / np.sum(weights[i,]) #the np sum of weights[1,] was all zeroes 
             alpha = np.log((1 - epsilon) / epsilon)

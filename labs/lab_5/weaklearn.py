@@ -11,7 +11,7 @@
 import numpy as np
 import math
 
-def weaklearn(X, t, v):
+def weaklearn(X, t, v = None):
     X0b = X.transpose()[t==1]; #DATA IN CLASS 1
     X1b = X.transpose()[t==-1]; #DATA IN CLASS -1
 
