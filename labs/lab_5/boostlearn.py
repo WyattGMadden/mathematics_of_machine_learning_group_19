@@ -29,11 +29,16 @@ def boostlearn(X, t, M):
             weights[i + 1, pred_correct] = weights[i, pred_correct] * (np.exp(alpha))
             corect[i] = frac_pred_correct
         if frac_pred_correct < 0.5:
-
-            epsilon = 1 - np.sum(weights[i, pred_correct]) / np.sum(weights[i,]) #the np sum of weights[1,] was all zeroes 
-            alpha = np.log((1 + epsilon) / epsilon)
+            #print("less than")
+            
+            preds = weakeval(X = X, params = -1*params[i,:])
+            pred_correct = (preds == t)
+            frac_pred_correct = np.sum(pred_correct) / len(pred_correct)
+        
+            epsilon = np.sum(weights[i, pred_correct]) / np.sum(weights[i,]) #the np sum of weights[1,] was all zeroes 
+            alpha = np.log((1 - epsilon) / epsilon)
             weights[i + 1, pred_correct] = weights[i, pred_correct] * (np.exp(alpha))
-            corect[i] = 1 - frac_pred_correct
-            params[i,] = params[i,]*-1
+            corect[i] = frac_pred_correct
+            #params[i,] = params[i,]*-1
     weights = weights[0:M,]
     return params, weights, corect
