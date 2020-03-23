@@ -7,16 +7,15 @@
 #  I - dims(0)-by-dims(1)-by-dims(2) matrix of integers with the raw image data.
 #  dims - A triple of numbers with the height, width, and number of channels (3 for RGB).
 
-
+import numpy as np
 import matplotlib.image as mpimg
 
 def im2rgb(ImageFile):
-    I = mpimg.imread('image_name.png')
-
+    I = mpimg.imread(ImageFile)
     W = np.shape(I)[1]
     H = np.shape(I)[0]
-    XI = cast(reshape(I,[W*H,3]),'double')/255.0;
-    dims = size(I);
-    X = XI';
+    XI = np.reshape(I,(W*H,3)) / 255.0
+    dims = np.shape(I)
+    X = np.transpose(XI)
     
     return X, I, dims
