@@ -11,7 +11,7 @@
 import numpy as np
 import math
 
-def weaklearn(X, t, v = None):
+def weaklearn(X, t, v):
     X0b = X.transpose()[t==1]; #DATA IN CLASS 1
     X1b = X.transpose()[t==-1]; #DATA IN CLASS -1
 
@@ -44,7 +44,8 @@ def weaklearn(X, t, v = None):
 
     #okay but in this case we are supposed to grab the number 2
 
-    for d in range(1,X0b.shape[1]):
+    for d in range(0,X0b.shape[1]):
+        #print(d)
          
         #grab the dth row
         #[~,IX] = sort(X(d,:)); ~ means logical "not" in matlab
@@ -52,7 +53,6 @@ def weaklearn(X, t, v = None):
         IX = np.argsort(X[:,d]);
         
         err= np.cumsum(W[IX]) #err = cumsum(W(IX));
-
         min_cum = np.min(err);
         min_k   = np.argmin(err);
         best_01 = sum(W0)  + np.min(err); # + min_cum
@@ -80,7 +80,7 @@ def weaklearn(X, t, v = None):
     beta = np.zeros(X0b.shape[1]);
     beta[best_d] = 1;
     params = np.append(beta, -best_x);
-    if is_01 == 1: 
-        params = params * -1;
+    #if is_01 == 1: 
+    #    params = params * -1;
             
     return(params)
