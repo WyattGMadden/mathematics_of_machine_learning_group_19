@@ -284,13 +284,16 @@
 6}\label{dan-crowley-wyatt-madden---lab-6}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
-         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
-         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{image} \PY{k}{as} \PY{n+nn}{mpimg}
-         \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
-         \PY{k+kn}{from} \PY{n+nn}{im2rgb} \PY{k}{import} \PY{o}{*}
-         \PY{k+kn}{from} \PY{n+nn}{pointclouds} \PY{k}{import} \PY{o}{*}
-         \PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{image} \PY{k}{as} \PY{n+nn}{mpimg}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{from} \PY{n+nn}{im2rgb} \PY{k}{import} \PY{o}{*}
+        \PY{k+kn}{from} \PY{n+nn}{rgb2im} \PY{k}{import} \PY{o}{*}
+        \PY{k+kn}{from} \PY{n+nn}{pointclouds} \PY{k}{import} \PY{o}{*}
+        \PY{k+kn}{from} \PY{n+nn}{pointrings} \PY{k}{import} \PY{o}{*}
+        \PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -342,19 +345,19 @@
     \subsection{2}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{temp\PYZus{}cloud} \PY{o}{=} \PY{n}{pointclouds}\PY{p}{(}\PY{p}{)}
-         \PY{n}{pc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{temp\PYZus{}cloud}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
-         \PY{n}{pc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{temp\PYZus{}cloud}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{temp\PYZus{}cloud} \PY{o}{=} \PY{n}{pointclouds}\PY{p}{(}\PY{p}{)}
+        \PY{n}{pc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{temp\PYZus{}cloud}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{pc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{temp\PYZus{}cloud}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{pc}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{pc}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a157a9438>
+{\color{outcolor}Out[{\color{outcolor}4}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a087f8d68>
 \end{Verbatim}
             
     \begin{center}
@@ -368,18 +371,28 @@ and plot the same points with shapes indicating which clusters the
 K-means assigned them to.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{temp\PYZus{}km} \PY{o}{=} \PY{n}{km}\PY{p}{(}\PY{n}{pc}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
-         \PY{n}{pc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{temp\PYZus{}km}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{pc}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{temp\PYZus{}km} \PY{o}{=} \PY{n}{km}\PY{p}{(}\PY{n}{pc}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{pc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{temp\PYZus{}km}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{pc}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a158ceb38>
+{\color{outcolor}Out[{\color{outcolor}5}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a140f8470>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{pc}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x1a14152c18>
 \end{Verbatim}
             
     \begin{center}
@@ -387,57 +400,182 @@ K-means assigned them to.
     \end{center}
     { \hspace*{\fill} \\}
     
-    We see that the k-means has near perfect assignment, other than for the
-two clusters that are slightly overlapping in the bottom left hand
-corner.
+    We see that except for where there is some overlap in groups, the
+k-means perform very well.
+
+    \section{3}\label{section}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{I} \PY{o}{=} \PY{n}{mpimg}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mountains\PYZus{}small.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-         \PY{n}{I}\PY{o}{.}\PY{n}{shape}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{def} \PY{n+nf}{gen\PYZus{}km}\PY{p}{(}\PY{n}{dat}\PY{p}{)}\PY{p}{:}
+            \PY{n}{pc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{dat}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+            \PY{n}{pc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{dat}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{n}{temp\PYZus{}km} \PY{o}{=} \PY{n}{km}\PY{p}{(}\PY{n}{pc}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+            \PY{n}{pc}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{temp\PYZus{}km}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{n}{sns}\PY{o}{.}\PY{n}{scatterplot}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{hue} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cluster}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{style} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{label}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{pc}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{gen\PYZus{}km}\PY{p}{(}\PY{n}{pointclouds}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{gen\PYZus{}km}\PY{p}{(}\PY{n}{pointclouds}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{gen\PYZus{}km}\PY{p}{(}\PY{n}{pointclouds}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{4}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{gen\PYZus{}km}\PY{p}{(}\PY{n}{pointrings}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{gen\PYZus{}km}\PY{p}{(}\PY{n}{pointrings}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{gen\PYZus{}km}\PY{p}{(}\PY{n}{pointrings}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{5}\label{section}
+
+    Clearly the data sets generated from pointclouds are classified much
+better than the data sets generated from pointrings. This makes sense,
+as k-means learns centroids, and each of the rings generated from
+pointrings have identical centroid. Therefore they are not separable
+according to centroids. If we extended k-means to instead learn distance
+from centroid, it may perform better on the pointrings data set.
+
+    \section{6}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{temp\PYZus{}im} \PY{o}{=} \PY{n}{im2rgb}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mountains\PYZus{}small.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{pc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{transpose}\PY{p}{(}\PY{n}{temp\PYZus{}im}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{columns} \PY{o}{=} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} K\PYZhy{}Means}
+         \PY{c+c1}{\PYZsh{}  Separate data points into K clusters with no other information.}
+         \PY{c+c1}{\PYZsh{} Inputs:}
+         \PY{c+c1}{\PYZsh{}  X \PYZhy{} D\PYZhy{}by\PYZhy{}N matrix of N points in D dimensions.}
+         \PY{c+c1}{\PYZsh{}  K \PYZhy{} Integer number of clusters to detect.}
+         \PY{c+c1}{\PYZsh{} Outputs:}
+         \PY{c+c1}{\PYZsh{}  mu \PYZhy{} D\PYZhy{}by\PYZhy{}K matrix with the learned cluster centroids.}
+         \PY{c+c1}{\PYZsh{}  labels \PYZhy{} Length N vector with integer (1, 2, ..., K) class assignments.}
+         
+         \PY{k+kn}{import} \PY{n+nn}{random}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{k}{def} \PY{n+nf}{km\PYZus{}3dim}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{:}
+             \PY{c+c1}{\PYZsh{}set first K centroids at random data points}
+             \PY{n}{centroids} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{random}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{]}
+             
+             \PY{c+c1}{\PYZsh{}calculate first set of assignments to nearest centroid}
+             \PY{n}{centroid\PYZus{}dist} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{)}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{dist\PYZus{}from\PYZus{}i\PYZus{}centroid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{centroids}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{centroid\PYZus{}dist}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{dist\PYZus{}from\PYZus{}i\PYZus{}centroid}
+             \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{centroid\PYZus{}dist}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+             
+             \PY{c+c1}{\PYZsh{}recalculate centroids and reassign until stable}
+             \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+                 \PY{n}{centroids} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{agg}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{z}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{dist\PYZus{}from\PYZus{}i\PYZus{}centroid} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{centroids}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+                     \PY{n}{centroid\PYZus{}dist}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{dist\PYZus{}from\PYZus{}i\PYZus{}centroid}
+                 \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid\PYZus{}new}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{centroid\PYZus{}dist}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}check if centroid assignments didn\PYZsq{}t change}
+                 \PY{k}{if} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid\PYZus{}new}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                     \PY{k}{break}
+                 \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid\PYZus{}new}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                 
+             \PY{n}{mu} \PY{o}{=} \PY{n}{centroids}
+             \PY{n}{labels} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{centroid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+             
+             \PY{k}{return} \PY{n}{mu}\PY{p}{,} \PY{n}{labels}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{im\PYZus{}km} \PY{o}{=} \PY{n}{km\PYZus{}3dim}\PY{p}{(}\PY{n}{pc}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/wyattmadden/anaconda3/lib/python3.6/site-packages/ipykernel\_launcher.py:20: RuntimeWarning: invalid value encountered in sqrt
+
+    \end{Verbatim}
+
+    \section{7}\label{section}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{X} \PY{o}{=} \PY{n}{im\PYZus{}km}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{im\PYZus{}km}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{]}
+         
+         \PY{n}{dims} \PY{o}{=} \PY{n}{temp\PYZus{}im}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         
+         \PY{n}{I} \PY{o}{=} \PY{l+m+mf}{255.0} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{n}{dims}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{dims}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{I}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}33}]:} (257, 500, 3)
+{\color{outcolor}Out[{\color{outcolor}18}]:} <matplotlib.image.AxesImage at 0x1a14910c50>
 \end{Verbatim}
             
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{im2rgb}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mountains\PYZus{}small.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        AttributeError                            Traceback (most recent call last)
-
-        <ipython-input-3-0d89818e60c1> in <module>()
-    ----> 1 im2rgb('mountains\_small.png').shape
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
     
+    Not bad!
 
-        AttributeError: 'tuple' object has no attribute 'shape'
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{temp\PYZus{}km} \PY{o}{=} \PY{n}{km}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        ---------------------------------------------------------------------------
-
-        NameError                                 Traceback (most recent call last)
-
-        <ipython-input-7-dc3c002454e5> in <module>()
-    ----> 1 temp\_km = km(X, 5)
-    
-
-        NameError: name 'X' is not defined
-
-    \end{Verbatim}
+    \section{Extra}\label{extra}
 
 
     % Add a bibliography block to the postdoc

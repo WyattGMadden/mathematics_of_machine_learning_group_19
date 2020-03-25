@@ -14,7 +14,6 @@ def pointclouds():
     K = 5
     SPACING = 9
     RADIUS = 1
-    random.seed(1000)
     
     X = np.zeros((2,N))
     Y = np.transpose(np.zeros(N))
