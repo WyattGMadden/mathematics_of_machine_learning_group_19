@@ -60,16 +60,23 @@ def softsvm(X, l, gamma):
 
     x = np.repeat(1, N + D + 1) #should it be 1? i honestly dont know
     G = np.identity(n=N+D+1) * np.concatenate((np.repeat(0, N), np.repeat(1, D), np.repeat(0,1)), axis = 0)
-    a = np.repeat(0, N)
+    a = np.repeat(0, N+D+1)
     
-    c =np.concatenate(-1*np.identity(N), np.transpose(np.dot(np.identity(N) * l, np.transpose(X))), np.transpose(-1*l))
-    # construct H, f, A, b, and lb
+    c =np.concatenate((-1*np.identity(N), np.transpose(np.dot(np.identity(N) * l, np.transpose(X))), np.transpose(-1*l)))
+    
+    b = np.repeat(-1, np.dot(np.transpose(c), x).shape)
+    
+    #figuring this out was such a pain: 
+    G = G.astype(np.double)
+    c = c.astype(np.double)
+    a= a.astype(np.double)
+    b= b.astype(np.double)
+    meq = 1
+    #construct H, f, A, b, and lb
     #quadprog.solve_qp()
         #min 1/2 (x.T G X + ax)
         #st c x <= b
-    
-    
-x = quadprog.solve_qp(); 
+    quadprog.solve_qp(G, a, c, b, meq)
 
 # distribute components of x into w, b, and xi:
 
