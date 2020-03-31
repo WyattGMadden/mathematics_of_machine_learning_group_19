@@ -29,6 +29,8 @@ Created on Mon Mar 30 12:33:47 2020
 #
 # classify data using sign( X'*w + b )
 import scipy.io as scipy_io
+from scipy import sparse 
+#WYATTT CHECK OUT THE SPARSE STUFF< I HAVEN"T INCLUDED IT YET BUT SHOULD
 import numpy as np
 import quadprog
 import cvxopt
