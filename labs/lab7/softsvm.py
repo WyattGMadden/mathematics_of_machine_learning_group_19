@@ -74,7 +74,7 @@ def softsvm(X, l, gamma):
 
     Gstack = np.concatenate((G_top, G_bottom))
     
-    h = np.concatenate((np.repeat(-1, G_top.shape[0]), np.zeros(N,), -100000*np.ones(D+1))) #-1*math.inf*np.ones(D+1)))
+    h = np.concatenate((np.repeat(-1, G_top.shape[0]), np.zeros(N,), 1000000*np.ones(D+1))) #-1*math.inf*np.ones(D+1)))
      
     A = np.identity(n = N + D + 1)
     b= np.repeat(1, N + D +1)
@@ -87,15 +87,13 @@ def softsvm(X, l, gamma):
     #b = matrix(b.astype('float'))
 
     sol = cvxopt.solvers.qp(P,q,Gstack, h)
-    #http://cvxopt.org/userguide/coneprog.html#quadratic-programming
-    #quadprog.solve_qp()
-        #min 1/2 (x.T P X + q.T x)
-        #st G x <= h
-        #st A x =  b
     
-    #sol = quadprog.solve_qp(G, a, c, b, meq)
+    
+    slack = np.array(sol['x'][0:(N-1)])
+    w     = np.array(sol['x'][N:(N+D-1)])
+    b     = np.array(sol['x'][N+D])
 
-# distribute components of x into w, b, and xi:
+  
 
     return(w, b, xi)
 
