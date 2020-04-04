@@ -33,6 +33,7 @@ from scipy import sparse
 #WYATTT CHECK OUT THE SPARSE STUFF< I HAVEN"T INCLUDED IT YET BUT SHOULD
 import numpy as np
 import math
+import seaborn as sns
 
 import quadprog
 import cvxopt
@@ -47,7 +48,7 @@ mat = scipy_io.loadmat('//Users/dancrowley/documents/machine_learning_zosso/math
 X = mat["X"]
 l = mat["L"]
     
-def softsvm(X, l, gamma):
+#def softsvm(X, l, gamma):
     D,N = X.shape
 
     x = np.repeat(1, N + D + 1) #should it be 1? i honestly dont know
@@ -89,11 +90,19 @@ def softsvm(X, l, gamma):
     sol = cvxopt.solvers.qp(P,q,Gstack, h)
     
     
-    slack = np.array(sol['x'][0:(N-1)])
-    w     = np.array(sol['x'][N:(N+D-1)])
+    slack = np.array(sol['x'][0:(N)]) 
+    w     = np.array(sol['x'][N:(N+D)])
     b     = np.array(sol['x'][N+D])
 
   
+pred = np.dot(np.transpose(X), w) + b
 
-    return(w, b, xi)
+
+import matplotlib.pyplot as plt
+
+sns.scatterplot(x=slack, y= pred)
+
+plt.scatter(y= slack, x= pred, c = np.sign(l) == np.sign(pred))
+
+
 
