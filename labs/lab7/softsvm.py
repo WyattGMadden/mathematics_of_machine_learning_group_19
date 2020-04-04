@@ -51,6 +51,7 @@ def softsvm(X, l, gamma):
     D,N = X.shape
 
     x = np.repeat(1, N + D + 1) #should it be 1? i honestly dont know
+    G = np.identity(n=N+D+1) * np.concatenate((np.repeat(0.00001, N), np.repeat(1, D), np.repeat(0.00001,1)), axis = 0)
     
     P = np.identity(n=N+D+1) * np.concatenate((np.repeat(0, N), np.repeat(1, D), np.repeat(0,1)), axis = 0)
     q = np.concatenate((np.repeat(1, N), np.repeat(0, D + 1)))
@@ -61,20 +62,13 @@ def softsvm(X, l, gamma):
     
     #now create the bottom part of "G", the infinity section
     
-    G_top = np.concatenate((I_n, np.transpose(LdotX), np.transpose(lil_l)))
-    #G =np.concatenate((-1*np.identity(N), np.transpose(np.dot(np.identity(N) * l, np.transpose(X))), np.transpose(-1*l)))
-    G_top= np.transpose(G_top)
-    
-    #I thought part of the issue might be that some of the constraints aren't in the equation
-    #specifically, the -inf, -inf, and 0 part in the lab assignment
-    #so, i thought i could include those by stacking them into "G"
-    #now we are getting a different error...
-    
     G_bottom = -1*np.identity(n=N+D+1)
-
-    Gstack = np.concatenate((G_top, G_bottom))
+    G = np.concatenate((I_n, np.transpose(LdotX), np.transpose(lil_l)))
+    #G =np.concatenate((-1*np.identity(N), np.transpose(np.dot(np.identity(N) * l, np.transpose(X))), np.transpose(-1*l)))
+    G= np.transpose(G)
     
-    h = np.concatenate((np.repeat(-1, G_top.shape[0]), np.zeros(N,), 1000000*np.ones(D+1))) #-1*math.inf*np.ones(D+1)))
+    Gstack = np.concatenate((G, G_bottom))
+    h = np.concatenate((np.repeat(-1, G.shape[0]), np.zeros(N,), -1*math.inf*np.ones(D+1)))
      
     A = np.identity(n = N + D + 1)
     b= np.repeat(1, N + D +1)
@@ -83,17 +77,19 @@ def softsvm(X, l, gamma):
     q = matrix(q.astype('float'))
     Gstack = matrix(Gstack.astype('float'))
     h = matrix(h.astype('float'))
-    #A = matrix(A.astype('float'))
-    #b = matrix(b.astype('float'))
+    A = matrix(A.astype('float'))
+    b = matrix(b.astype('float'))
 
     sol = cvxopt.solvers.qp(P,q,Gstack, h)
+    #http://cvxopt.org/userguide/coneprog.html#quadratic-programming
+    #quadprog.solve_qp()
+        #min 1/2 (x.T P X + q.T x)
+        #st G x <= h
+        #st A x =  b
     
-    
-    slack = np.array(sol['x'][0:(N-1)])
-    w     = np.array(sol['x'][N:(N+D-1)])
-    b     = np.array(sol['x'][N+D])
+    #sol = quadprog.solve_qp(G, a, c, b, meq)
 
-  
+# distribute components of x into w, b, and xi:
 
     return(w, b, xi)
 
