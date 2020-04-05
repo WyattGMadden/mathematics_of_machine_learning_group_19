@@ -1,4 +1,4 @@
-softmargin(X, d, gamma, kernel = 'linear', sigma = 1.0, degree = 1, theta = 1.0)%SOFTSVM    Learns an approximately separating hyperplane for the provided data.
+softmargin(X, d, gamma, kernel = 'linear', sigma = 1.0, degree = 1, theta = 1.0)max_word = np.transpose(X)[locs, ]%SOFTSVM    Learns an approximately separating hyperplane for the provided data.
 % [w, b, xi] = softsvm( X, l, gamma )
 %
 % Input: 
