@@ -7,16 +7,8 @@ for (i in 1: (2*(length(train_tree$tip.label))-2))
 {
   grp1 = getPhyloGroups(train_tree)[i][[1]][[1]]
   grp2 = getPhyloGroups(train_tree)[i][[1]][[2]]
-  
-  #product of two groups, missing observations
-  #as the product gets larger, the estimae goes to zero
-  #here a big product means one of the groups is missing a lot of variables
-  # ad 0.0001 so we dont get a situation where we divide by zero. bad! 
-  product[i] = 1/ (0.0001 + (sum(!is.na(train_BodySize[grp1,]$BodySize_miss))/length(train_BodySize[grp1,]$BodySize) * sum(!is.na(train_BodySize[grp2,]$BodySize_miss))/length(train_BodySize[grp2,]$BodySize)))
-
   #product[i] =  product[i]
   #product[i] =  (unlist(product[i]))^2
-  
   #create constrast basis 
   
   train_BodySize$basis_miss = as.numeric(as.character(train_BodySize$basis_miss))
@@ -57,8 +49,8 @@ for (i in 1: (2*(length(train_tree$tip.label))-2))
                            b0_map_var,
                            b1_map_var,
                            sigma_mean,
-                           b0_mle,
-                           b1_mle,
+                           N1,
+                           N2,
                            t_val_mle, 
                            (unlist(product[i]))))
   
@@ -88,6 +80,10 @@ colnames(results) <- c("b0_map_mean",
                        "b1_mle",
                        "t_val_mle",
                        "product")
+
+plot(results[,2], results[,7])
+plot(results[,1], results[,6])
+
 #now run gpr 
 #now run gpr 
 #now run gpr 
@@ -121,9 +117,6 @@ gpf_results = gpf(Data= Data,
                   tree = tree_gpf, 
                   frmla.phylo = BodySize_miss ~ phylo, algorithm = 'phylo',
                   nfactors = 1)
-
-
-
 
 # rm(beta_samples, coef, cov_beta, design.mat, exp_beta,
 #    mat, product, Sigma_0, Sigma_0_inv, X, 
