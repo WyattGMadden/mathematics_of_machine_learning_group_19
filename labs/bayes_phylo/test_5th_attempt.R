@@ -1,11 +1,16 @@
 library(ape)
 library(phylofactor)
 
-sim = 100
+sim = 30
+
 error <- matrix(0, sim, 12)
 
 for(j in 1:sim)
 {
+  drop_tips = 20
+  delta = 1 #delta is a control parameter for the bayesian model. as it gets bigger the estimates shrink to 0
+  delta = j
+  
   source('/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/5th_attempt_generate_data.R')
   print(num)
   source('/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/5th_attempt.R')
@@ -27,8 +32,14 @@ for(j in 1:sim)
   
   plot.phylo(test_tree,use.edge.length=FALSE);edgelabels()
   
-  cross_val_gpf = crossVmap(grps, tree= tree, original_community = train_tree$tip.label, test_tree$tip.label, ignore.interruptions = F)
-
+  skip_to_next = FALSE
+  
+  tryCatch({
+    cross_val_gpf = crossVmap(grps, tree= tree, original_community = train_tree$tip.label, test_tree$tip.label, ignore.interruptions = F)
+            }, 
+            error=function(e){ skip_to_next <<- TRUE})
+  if(skip_to_next) { next }    
+  
   if (length(cross_val_gpf) > 2) next 
   
 
@@ -49,8 +60,8 @@ for(j in 1:sim)
     
   
 
-  sse_map = (1 / 10 ) * sum(((test_BodySize[,"intercept"]*results[max_map,"b0_map_mean"]          + t(test_BodySize[,"basis_map"])*results[max_map,"b1_map_mean"])          - test_BodySize[,"BodySize"])^2)
-  sse_gpf = (1 / 10 ) * sum(((test_BodySize[,"intercept"]*gpf_results$models[[1]]$coefficients[1] + t(test_BodySize[,"basis_grp"])*gpf_results$models[[1]]$coefficients[2]) - test_BodySize[,"BodySize"])^2)
+  sse_map = (1 / drop_tips ) * sum(((test_BodySize[,"intercept"]*results[max_map,"b0_map_mean"]          + t(test_BodySize[,"basis_map"])*results[max_map,"b1_map_mean"])          - test_BodySize[,"BodySize"])^2)
+  sse_gpf = (1 / drop_tips ) * sum(((test_BodySize[,"intercept"]*gpf_results$models[[1]]$coefficients[1] + t(test_BodySize[,"basis_grp"])*gpf_results$models[[1]]$coefficients[2]) - test_BodySize[,"BodySize"])^2)
  
    N = sum(!is.na(train_BodySize[,"intercept_miss"]))
   sse_map_train = 1/N*sum(((train_BodySize[,"intercept_miss"]*results[max_map,"b0_map_mean"]          + t(train_BodySize[,"basis_miss"])*results[max_map,"b1_map_mean"])            - as.numeric(as.character(train_BodySize[,"BodySize_miss"])))^2, na.rm=TRUE)
@@ -62,26 +73,43 @@ for(j in 1:sim)
   error[j,4]  <-  sse_map_train
   error[j,5]  <-  num_miss
   error[j,6]  <-  num
-  error[j,7]  <-  #max_mle
+  error[j,7]  <-  delta
   error[j,8]  <-  samp
-  error[j,9]  <-  NA #results[samp,"b0_mle"]
-  error[j,10] <-  NA #results[samp,"b1_mle"]
-  error[j,11] <-  NA #results[samp,"b0_map_mean"]
-  error[j,12] <-  NA #results[samp,"b1_map_mean"]
+  error[j,9]  <-  results[max_map,"b0_map_mean"]
+  error[j,10] <-  results[max_map,"b1_map_mean"]
+  error[j,11] <-  gpf_results$models[[1]]$coefficients[1]
+  error[j,12] <-  gpf_results$models[[1]]$coefficients[2]
 
   rm(list=setdiff(ls(), c("error", "sim", "j")))
   
   print(j)
 }
   
-lines((error[,1]), type = 'l', lwd = 5)  #mle testing
-plot((error[,2]), col = 'red', lwd = 5, type = 'l')       #map testing
-lines((error[,3]), col = 'blue', lwd = 5)                  #mle training
+plot((error[,1]), type = 'l', lwd = 5)                     #mle testing
+lines((error[,2]), col = 'red', lwd = 5, type = 'l')       #map testing
+plot(error[,5]/error[,6], log(error[,1]/error[,2]), lwd=5)
+
+plot(error[,9], type = 'l', lwd = 5)
+lines(error[,10], type = 'l', col = 'red', lwd = 5)
+
+plot(error[,10], error[,5], col = 'red', lwd = 5)
+
+
+
+plot((error[,3]), col = 'blue', lwd = 5, type = 'l')                  #mle training
 lines((error[,4]), col = 'green', lwd = 5)                 #map training
 
-hist(error[,1] - error[,2], breaks = 10)
+plot((error[,7]), col = 'red', lwd = 5, type = 'l')       #map testing
+
+plot(error[,1] - error[,2], breaks = 10)
+
+plot(error[,1])
+
+plot(error[,1] - error[,2], error[,5]/error[,6])
+
+
 hist(error[,4] - error[,3], breaks = 10)
 
-save(list=ls(),file = "/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/data/test_2020_04_15")
+save(list=ls(),file = "/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/data/test_2020_04_16b")
 
 
