@@ -62,25 +62,11 @@ for( x in sim)
 }
 
 
-
-
-
-plot((error[,1]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
-
-
-
-plot((error[,11]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
-plot((error[,10]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
+plot((error[,1]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 plot((error[,12]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
 
-lines((error[,9]), type = 'l', col = rgb(red = 1, green = 0, blue = 0, alpha = 0.5), lwd = 3)                         
 
-plot( error[,8], ((error[,1] - error[,9])), col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
-plot(error[,7], (error[,1] - error[,9]), col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
-
-plot((error[,1]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
-plot((error[,11]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
-
+plot(error[,1] - error[,9], col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
 
 save(list=ls(),file = "/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/data/test_2020_04_20_A")
 
