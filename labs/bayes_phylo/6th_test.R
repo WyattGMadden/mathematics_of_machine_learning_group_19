@@ -56,17 +56,12 @@ for( x in sim)
    error[index,10] <-  results[min,7]
    error[index,11] <-  results[min_2,1]
    error[index,12] <-  results[min_2,7]
-  
-   #rm(list=setdiff(ls(), c("error", "sim", "j"))
    print(error[index,])
   }
 }
 
-
 plot((error[,1]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 plot((error[,12]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
-
-
 plot(error[,1] - error[,9], col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
 
 save(list=ls(),file = "/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/data/test_2020_04_20_A")

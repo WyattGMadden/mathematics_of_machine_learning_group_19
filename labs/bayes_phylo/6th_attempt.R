@@ -36,6 +36,7 @@ for (i in 1: (2*(length(train_tree$tip.label))-2))
   theta_2 =  epsilon * exp(delta * N1 * N2) 
   
   theta = diag(2) * c(theta_2, 1/1000)
+  #theta = diag(2) * c(0,0)
   theta
   beta_ridge = solve(t(Z) %*% Z + theta) %*% t(Z) %*% y
   
@@ -145,6 +146,8 @@ gpf_results = gpf(Data= Data,
                   frmla.phylo = BodySize_miss ~ phylo, algorithm = 'phylo',
                   nfactors = 1)
 
+
+
 grp1 = Data$Species[gpf_results$groups[1][[1]][[1]]]
 grp2 = Data$Species[gpf_results$groups[1][[1]][[2]]]
 grps = list(grp1, grp2)
@@ -163,7 +166,7 @@ if (length(cross_val_gpf) > 2)
 if (length(cross_val_gpf) == 2)  
   {
   basis_grp = c(as.numeric(test_BodySize[test_BodySize$Species %in% cross_val_gpf[1][[1]],]$basis) * -1, as.numeric(test_BodySize[test_BodySize$Species %in% cross_val_gpf[2][[1]],]$basis) * 1)
-  sse_gpf = (1 / drop_tips ) * sum(((test_BodySize[,"intercept"]*gpf_results$models[[1]]$coefficients[1] + basis_grp*gpf_results$models[[1]]$coefficients[2]) - test_BodySize[,"BodySize"])^2)
+  sse_gpf = (1 / basis_grp %>% length() ) * sum(((test_BodySize[,"intercept"]*gpf_results$models[[1]]$coefficients[1] + basis_grp*gpf_results$models[[1]]$coefficients[2]) - test_BodySize[,"BodySize"])^2)
   }
 
 
