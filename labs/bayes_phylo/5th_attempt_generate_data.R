@@ -1,7 +1,8 @@
 set.seed(Sys.time())
-num= 60 #rpois(1,60)
+num= 40 #rpois(1,60)
 tree <-rtree(num)
 tree$tip.label <- as.character(1:num)
+drop_tips = num/2
 
 #determine max groups
 max_groups <- 2*num-2
@@ -54,9 +55,7 @@ sum(test_BodySize$Species %in% train_BodySize$Species) == 0
 #in this simulation around 1/3 of the data are missing
 
 #num_miss = 1 + rpois(1,nrow(train_BodySize)/2.5)
-num_miss = length(train_BodySize)/2
-
-
+num_miss = nrow(train_BodySize)/2
 #num_miss = rpois(1,10)  
 miss_tip = sample(train_tree$tip.label, num_miss)
 
