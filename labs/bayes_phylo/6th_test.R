@@ -1,7 +1,7 @@
 library(ape)
 library(phylofactor)
-sim = (seq(0.01,2,.2)) #must be the same as line 11
-eps = (seq(0.01,2,.2))
+sim = (seq(0.000001,7,.5)) #must be the same as line 11
+eps = (seq(0.000001,7,.5))
 error <- matrix(0, length(sim)*length(eps), 12)
 index = 0
 source('/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/5th_attempt_generate_data.R')
@@ -42,7 +42,8 @@ for( x in sim)
   # results[i,4] <-  N1
   # results[i,5] <-  N2
   # results[i,6] <-  theta_2
-  
+  # results[i,7] <-  SSE_train
+    
    error[index,1]  <-  results[min,1] #sse 
    error[index,2]  <-  results[min,2]
    error[index,3]  <-  results[min,3]
@@ -55,14 +56,48 @@ for( x in sim)
    error[index,10] <-  results[min,7]
    error[index,11] <-  results[min_2,1]
    error[index,12] <-  results[min_2,7]
+   
    print(error[index,])
   }
 }
 
-plot((error[,1]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
-plot((error[,12]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))   
-plot(error[,1] - error[,9], col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
+plot(y = error[,1] - error[,9], x = error[,6], col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9)) 
+error[,9]
+plot(y = error[,1], x = error[,6], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 
-save(list=ls(),file = "/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/data/test_2020_04_20_A")
+plot(y = error[,1], x = error[,7], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+plot(y = error[,1], x = error[,8], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+
+#theta_2 =  epsilon * exp(-delta * N1 * N2) 
+
+error %>%
+  as.data.frame() %>%
+  ggplot(aes(V7, V8)) +
+  geom_tile(aes(fill= as.numeric(V1 - V9) )) +
+  xlab("delta") +
+  ylab("epsilon")
+
+
+
+# plot((error[,1]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+# plot(error[,1], error[,7], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+# plot(error[,1], error[,8], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+# plot(error[,1], error[,6], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+# 
+# plot(error[,3], error[,6], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+# 
+# plot((error[,10]), type = 'l', lwd = 5, col = rgb(red = 1, green = 0, blue = 1, alpha = 0.9))
+# 
+# plot((error[,11]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+# plot((error[,12]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+
+
+
+
+plot(error[,11] - error[,9], col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
+
+
+
+#save(list=ls(),file = "/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/data/test_2020_04_20_A")
 
 
