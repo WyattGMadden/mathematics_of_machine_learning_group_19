@@ -29,17 +29,21 @@ for (i in 1: (2*(length(train_tree$tip.label))-2))
   y = as.numeric(as.character((y[- which(is.na(y))])))
   
   #as theta gets bigger, estimates shrink to 0
-  
+  #N1 is proportion  of tips with data, so a higher N1 is better
+  #N1 of 0 means every tip in that clade is missing data
+  #So as N1 gets bigger, theta 2 should shrink to 0, and our coefficients should go to the LSE
   N1 = sum(!is.na(train_BodySize[grp1,]$BodySize_miss))/length(train_BodySize[grp1,]$BodySize) 
   N2 = sum(!is.na(train_BodySize[grp2,]$BodySize_miss))/length(train_BodySize[grp2,]$BodySize)
   
-  theta_2 =  epsilon * exp(delta * N1 * N2) 
+  theta_2 =  epsilon * exp(-delta * N1 * N2) 
   
-  theta = diag(2) * c(theta_2, 1/1000)
+  #theta = diag(2) * c(theta_2, 1/1000)
+  theta = diag(2) * c(theta_2, theta_2)
+  
   #theta = diag(2) * c(0,0)
   theta
   beta_ridge = solve(t(Z) %*% Z + theta) %*% t(Z) %*% y
-  
+  #beta = solve(t(Z) %*% Z) %*% t(Z) %*% y
   cbind(Z %*% beta_ridge, y)
   
   SSE_train = 1/nrow(Z) * sum((Z %*% beta_ridge - y)^2)
@@ -146,7 +150,7 @@ gpf_results = gpf(Data= Data,
                   frmla.phylo = BodySize_miss ~ phylo, algorithm = 'phylo',
                   nfactors = 1)
 
-
+gpf_results$groups
 
 grp1 = Data$Species[gpf_results$groups[1][[1]][[1]]]
 grp2 = Data$Species[gpf_results$groups[1][[1]][[2]]]
