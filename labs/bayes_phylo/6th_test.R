@@ -4,7 +4,8 @@ sim = (seq(0.000001,7,.5)) #must be the same as line 11
 eps = (seq(0.000001,7,.5))
 error <- matrix(0, length(sim)*length(eps), 12)
 index = 0
-source('/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/5th_attempt_generate_data.R')
+
+source('5th_attempt_generate_data.R')
 
 for( x in sim)
 {
