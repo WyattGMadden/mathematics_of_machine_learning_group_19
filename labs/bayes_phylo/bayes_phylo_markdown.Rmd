@@ -162,7 +162,7 @@ for( x in sim)
     delta = delta*(j)
     #delta = delta*j
     #print(num)
-    source('/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/6th_attempt.R')
+    source('6th_attempt.R')
   
     #create the predictions based on mu_map
     #create a new variable, and label the boddy size and basis functions NA for these tips
