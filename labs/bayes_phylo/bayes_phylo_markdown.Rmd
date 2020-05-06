@@ -9,256 +9,63 @@ output: pdf_document
 library(ape)
 library(phylofactor)
 library(tidyverse)
+source("bayes_phylo_functions.R")
 ```
 
 
 ```{r}
-
 set.seed(Sys.time())
-num= 80 #rpois(1,60)
-tree <-rtree(num)
-tree$tip.label <- as.character(1:num)
-drop_tips = num/10 # determines ratio of test to training data 
+num = 80
 
-#determine max groups
-max_groups <- 2*num-2
-
-#choose a clade of the good length, we want to make sure its not monophyletic 
-clade1 = 0
-clade2 = 0
-
-while((length(clade1) < num / 3) | (length(clade2) < num / 3))
-{
-  #grab clades
-  samp = sample(max_groups, 1)
-  clade1 = getPhyloGroups(tree)[samp][1][[1]][[1]]
-  clade2 = getPhyloGroups(tree)[samp][1][[1]][[2]]
-}
-
-#randomly generate data                                            
-BodySize <-rlnorm(num, sdlog = 1.5)
-BodySize[clade1] <-rlnorm(length(clade1), sdlog = 1.5)*4
-
-#create a data matrix, with the body size, tip labels, and a basis function of all 1s
-BodySize = as.data.frame(cbind(BodySize, tree$tip.label, basis = 1, intercept = 1))
-BodySize <- BodySize %>%
-  dplyr::mutate(Species=  as.character(V2)) %>%
-  dplyr::select(-V2)
-
-#now wegenerate the missing data.
-#these are species we haven't observed data for
-#in this simulation around 1/3 of the data are missing
-
-#num_miss = 1 + rpois(1,nrow(train_BodySize)/2.5)
-num_miss = nrow(BodySize)/3
-
-#num_miss = rpois(1,10)  
-miss_tip = sample(tree$tip.label, num_miss)
-
-#create missing body size variable
-BodySize$BodySize_miss = BodySize$BodySize
-BodySize$basis_miss = BodySize$basis
-BodySize$intercept_miss = BodySize$intercept
-
-#create a new variable, and label the boddy size and basis functions NA for these tips
-BodySize[(BodySize$Species %in% miss_tip),]$BodySize_miss = NA
-BodySize[(BodySize$Species %in% miss_tip),]$basis_miss = NA
-BodySize[(BodySize$Species %in% miss_tip),]$intercept_miss = NA
-
-BodySize$basis = as.numeric(BodySize$basis)
-BodySize$BodySize = as.numeric(as.character(BodySize$BodySize))
-BodySize$intercept = as.numeric(BodySize$intercept)
-
+sim_tree_temp <- sim_tree(num.tips = num)
+tree <- sim_tree_temp[['tree']]
+tree_data <- sim_tree_temp[['tree.data']]
+clade1 <- sim_tree_temp[['clade.1']]
+clade2 <- sim_tree_temp[['clade.2']]
 ```
 
 
 #grab a sample of N tips for the testing tree
 ```{r }
-test_tree <- ape::drop.tip(tree,tree$tip.label[!(tree$tip.label %in% sample(tree$tip.label, drop_tips))])
-train_tree <- ape::drop.tip(tree,tree$tip.label[(tree$tip.label %in% test_tree$tip.label)])
 
-
-#should be equal to 0
-
-sum(test_tree$tip.label %in% train_tree$tip.label) == 0
-sum(train_tree$tip.label %in% test_tree$tip.label) == 0
-num - (length(train_tree$tip.label) + length(test_tree$tip.label)) == 0
-
-
-#now, split the dataset into the training and testing datasets
-
-train_BodySize = BodySize %>% 
-  dplyr::filter(Species %in% train_tree$tip.label)
-
-test_BodySize = BodySize %>% 
-  dplyr::filter(Species %in% test_tree$tip.label)
-
-
-#should both be true:
-
-sum(train_BodySize$Species %in% test_BodySize$Species) == 0
-sum(test_BodySize$Species %in% train_BodySize$Species) == 0
-
-train_BodySize$basis_miss = as.numeric(train_BodySize$basis_miss)
-train_BodySize$BodySize_miss = as.numeric(as.character(train_BodySize$BodySize_miss))
-train_BodySize$intercept_miss = as.numeric(train_BodySize$intercept_miss)
-
-
-test_BodySize <- test_BodySize %>%
-  dplyr::mutate(intercept = as.numeric(as.character(intercept))) %>%
-  dplyr::mutate(BodySize = as.numeric(as.character(BodySize))) %>%
-  dplyr::mutate(basis = as.numeric(as.character(basis)))
-
-train_BodySize$basis_miss = as.numeric(as.character(train_BodySize$basis_miss))
-train_BodySize$intercept_miss = as.numeric(as.character(train_BodySize$intercept_miss))
-train_BodySize$train_BodySize_miss = as.numeric(as.character(train_BodySize$BodySize_miss))
-
+dropped_tree_temp <- drop_tips(tree = tree, 
+                               tree.data = tree_data,
+                               drop.tips.num = num / 10)
+tree_train <- dropped_tree_temp[['tree.train']]
+tree_test <- dropped_tree_temp[['tree.test']]
+train_data <- dropped_tree_temp[['train.data']]
+test_data <- dropped_tree_temp[['test.data']]
 
 ```
 
 ```{r}
 
-ggtree::ggtree(tree, branch.length = 'none', layout = 'circular') + 
-  ggtree::geom_tippoint(size=.15*as.numeric(BodySize$BodySize),col='blue')  +
+ggtree::ggtree(tree,
+               branch.length = 'none', 
+               layout = 'circular') + 
+  ggtree::geom_tippoint(size = .15*as.numeric(tree_data$BodySize), col = 'blue')  +
   #ggtree::geom_tippoint(size=.03*as.numeric(as.character(BodySize$BodySize_miss)),col='red') +
   ggtree::geom_tiplab()  
 
 
-ggtree::ggtree(train_tree, branch.length = 'none', layout = 'circular') + 
-  ggtree::geom_tippoint(size=.15*as.numeric(train_BodySize$BodySize_miss),col='blue')  +
+ggtree::ggtree(tree_train, 
+               branch.length = 'none', 
+               layout = 'circular') + 
+  ggtree::geom_tippoint(size = .15*as.numeric(train_data$BodySize_miss), col = 'blue')  +
   #ggtree::geom_tippoint(size=.03*as.numeric(as.character(BodySize$BodySize_miss)),col='red') +
   ggtree::geom_tiplab()  
 ```
 
 
 ```{r, message= FALSE, warning = FALSE, echo = FALSE, results = 'hide'}
-tries = seq(1:15)
-epsilon_seq = c(0.01,1,2,4,8,16,32,64,128,512) #must be the same as line 11
-#epsilon = 100
-#delta_seq = c(0.001,1,2,4,8,16)
 
-index = 0
-
-#error <- matrix(0, length(tries)*length(delta_seq)*length(epsilon_seq), 22)
-error <- matrix(0, length(tries)*1*length(epsilon_seq), 22)
-
-delta=1
-#plot(epsilon * exp(-delta *seq(0,1,.01)), type = 'l', xlab = "Percent Missing in Tips", ylab ="Penalty")
-#plot(epsilon * exp(-16 *seq(0,1,.01)), type = 'l', xlab = "Percent Missing in Tips", ylab ="Penalty")
-
-
-for(yy in tries)
-{
-  
-  test_tree <- ape::drop.tip(tree,tree$tip.label[!(tree$tip.label %in% sample(tree$tip.label, drop_tips))])
-  train_tree <- ape::drop.tip(tree,tree$tip.label[(tree$tip.label %in% test_tree$tip.label)])
-
-
-  #should be equal to 0
-
-  sum(test_tree$tip.label %in% train_tree$tip.label) == 0
-  sum(train_tree$tip.label %in% test_tree$tip.label) == 0
-  num - (length(train_tree$tip.label) + length(test_tree$tip.label)) == 0
-
-  #now, split the dataset into the training and testing datasets
-
-  train_BodySize = BodySize %>% 
-  dplyr::filter(Species %in% train_tree$tip.label)
-
-  test_BodySize = BodySize %>% 
-  dplyr::filter(Species %in% test_tree$tip.label)
-
-  #should both be true:
-
-  sum(train_BodySize$Species %in% test_BodySize$Species) == 0
-  sum(test_BodySize$Species %in% train_BodySize$Species) == 0
-
-  train_BodySize$basis_miss = as.numeric(train_BodySize$basis_miss)
-  train_BodySize$BodySize_miss = as.numeric(as.character(train_BodySize$BodySize_miss))
-  train_BodySize$intercept_miss = as.numeric(train_BodySize$intercept_miss)
-
-  test_BodySize <- test_BodySize %>%
-  dplyr::mutate(intercept = as.numeric(as.character(intercept))) %>%
-  dplyr::mutate(BodySize = as.numeric(as.character(BodySize))) %>%
-  dplyr::mutate(basis = as.numeric(as.character(basis)))
-
-  train_BodySize$basis_miss = as.numeric(as.character(train_BodySize$basis_miss))
-  train_BodySize$intercept_miss = as.numeric(as.character(train_BodySize$intercept_miss))
-  train_BodySize$train_BodySize_miss = as.numeric(as.character(train_BodySize$BodySize_miss))
-
-  x = NULL
-  for(x in epsilon_seq)
-  {
-   #print(paste("X =", x))
-   epsilon = x
-   j=NULL
-   #for(j in delta_seq)
-   # {
-    #switch things up, keep the same tree, but grab different training and tesing everytime
-   # print(paste("j =", j))
-    index = index + 1
-    #delta is a control parameter for the bayesian model. as it gets bigger the estimates shrink to 0
-    #delta = j
-    #print(num)
-    source('/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/6th_attempt.R')
-  
-    #create the predictions based on mu_map
-    #create a new variable, and label the boddy size and basis functions NA for these tips
-  
-    #we need to test the max estimate, and the mle estimate
-    #when there are no missing data, they find the same split point
-    #however, when the tips are missing they tend to get different
-    #we should probably test them both on the actual split point..
-
-    #first, identify the two groups pulled out by GPF in the training dataset
-  
-    #grp1 = train_tree$tip.label[gpf_results$groups[1][[1]][[1]]]
-    #grp2 = train_tree$tip.label[gpf_results$groups[1][[1]][[2]]]
-    min = which.min(results[,1])
-    min_2 = which.min(results[,2])
-    
-   # results[i,1] <-  sse_map
-   # results[i,2] <-  SSE_train
-   # results[i,3] <-  beta_ridge[2]
-   # results[i,4] <-  beta_ridge[1]
-   # results[i,5] <-  N1
-   # results[i,6] <-  N2
-   # results[i,7] <-  theta_2
-    
-   stat1 = sum(train_BodySize[getPhyloGroups(train_tree)[min][[1]][[1]],]$Species %in% clade1)/length(clade1)
-   stat2 = sum(train_BodySize[getPhyloGroups(train_tree)[min][[1]][[1]],]$Species %in% clade2)/length(clade2)
-
-   error[index,1]   <-  results[min,1] #sse 
-   error[index,2]   <-  results[min,2]
-   error[index,3]   <-  results[min,3]
-   error[index,4]   <-  results[min,4]
-   error[index,5]   <-  results[min,5]
-   error[index,6]   <-  results[min,6]
-   error[index,7]   <-  results[min,7]
-
-   error[index,8]   <-  results[min_2,1] #sse 
-   error[index,9]   <-  results[min_2,2]
-   error[index,10]  <-  results[min_2,3]
-   error[index,11]  <-  results[min_2,4]
-   error[index,12]  <-  results[min_2,5]
-   error[index,13]  <-  results[min_2,6]
-   error[index,14]  <-  results[min_2,7]
-   
-   error[index,15]  <-  delta
-   error[index,16]  <-  epsilon
-   error[index,17]  <-  sse_gpf
-   error[index,18]  <-  min
-   error[index,19]  <-  min_2
-   error[index,20]  <-  yy
-   
-   error[index,21]  <-  stat1
-   error[index,22]  <-  stat2
-
-
-   print(paste("index = " ,index ))
-   #print(error[index,])
-  }
- }
+error <- phylo_bayes_opti_epsilon(iters = 15,
+                                  epsilon.seq = c(0.01, 1, 2, 4, 8, 16, 32, 64, 128, 512),
+                                  drop.tips.num = num / 10,
+                                  tree = tree,
+                                  tree.data = tree_data,
+                                  clade.1 = clade1,
+                                  clade.2 = clade2)
 
 ```
 
@@ -268,11 +75,11 @@ for(yy in tries)
 
 error %>%
   as.data.frame() %>%
-  ggplot2::ggplot(aes(V15, V16)) +
-  ggplot2::geom_tile(aes(fill= as.numeric(V1) )) +
+  ggplot2::ggplot(aes(delta, epsilon)) +
+  ggplot2::geom_tile(aes(fill= as.numeric(sse_map_1) )) +
   ggplot2::xlab("delta") +
   ggplot2::ylab("epsilon") +
-  facet_wrap(~V20, scales = 'free')
+  facet_wrap(~yy, scales = 'free')
 
 ```
 
@@ -281,57 +88,55 @@ error %>%
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(as.character(V1)), x  = V16), lwd = 1) +
-  facet_wrap(~V20, scales='free') +
+  ggplot2::geom_line(aes(y = as.numeric(as.character(sse_map_1)), x = epsilon), lwd = 1) +
   ylab("SSE Testing Data") +
   xlab ("Delta") +
-  facet_wrap(~V20, scales='free')
+  facet_wrap(~yy, scales='free')
 
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric((V1)), x  = V16), lwd = 1) +
-  facet_wrap(~V20, scales='free') +
+  ggplot2::geom_line(aes(y = as.numeric((sse_map_1)), x = epsilon), lwd = 1) +
+  facet_wrap(~yy, scales='free') +
   ylab("SSE Testing Data") +
-  xlab ("Delta") +
-  facet_wrap(~V20, scales='free')
+  xlab ("Delta")
 
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V1), x  = V7, group = V20 ), lwd = 1) +
+  ggplot2::geom_line(aes(y = as.numeric(sse_map_1), x = SSE_train_1, group = yy), lwd = 1) +
   ylab("SSE Testing Data") +
-  xlab ("Lambda") +
-  facet_wrap(~V20, scales='free')
+  xlab("Lambda") +
+  facet_wrap(~yy, scales='free')
 
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V21), x  = V7, group = V20 ), lwd = 2) +
-  ggplot2::geom_line(aes(y = as.numeric(V22), x  = V7, group = V20 ), lwd = 2) +
-  facet_wrap(~V20, scales='free') +
+  ggplot2::geom_line(aes(y = as.numeric(stat1), x  = SSE_train_1, group = yy), lwd = 2) +
+  ggplot2::geom_line(aes(y = as.numeric(stat2), x  = SSE_train_1, group = yy), lwd = 2) +
+  facet_wrap(~yy, scales = 'free') +
   ylab("Proportion Correct") +
   xlab ("Lambda") +
-  facet_wrap(~V20)
+  facet_wrap(~yy)
 
 
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(as.character(V9)), x  = V16, group = V20 )) +
-  facet_wrap(~V20, scales='free')
+  ggplot2::geom_line(aes(y = as.numeric(as.character(beta_ridge_2_2)), x = epsilon, group = yy)) +
+  facet_wrap(~yy, scales='free')
 
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V9), x  = V7, group = V20 ), lwd = 1, col = "red") +
+  ggplot2::geom_line(aes(y = as.numeric(beta_ridge_2_2), x = SSE_train_1, group = yy), lwd = 1, col = "red") +
    ylab("SSE Training Data")+
   xlab("Lambda") +
-  facet_wrap(~V20, scales='free')
+  facet_wrap(~yy, scales = 'free')
 
  
 x <- error %>% as.data.frame() %>%
-  filter(V15 == 3)
+  filter(delta == 3)
 ```
 
 ```{r}
@@ -339,17 +144,14 @@ x <- error %>% as.data.frame() %>%
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V1), x  = V6, group = as.factor(V15 ))) +
-    ggplot2::geom_line(aes(y = as.numeric(V7), x  = V6, group = as.factor(V15) , col = 'red')) +
-  facet_wrap(~V15)
+  ggplot2::geom_line(aes(y = as.numeric(sse_map_1), x = theta_2_1, group = as.factor(delta))) +
+    ggplot2::geom_line(aes(y = as.numeric(SSE_train_1), x = theta_2_1, group = as.factor(delta) , col = 'red')) +
+  facet_wrap(~delta)
   
 
 
 ```
-  
-plot(y = error[,1] - error[,9], x = (error[,6]), col = rgb(red = error[,13]/max(error[,13]), green = 0, blue = 1, alpha = 0.9)) 
 
-```
 
 ```{r}
 plot(y = log(error[,1]), x = error[,6], col = rgb(red = error[,13]/max(error[,13]), green = 0, blue = 1, alpha = 0.9)) 
@@ -357,31 +159,31 @@ plot(y = log(error[,1]), x = error[,6], col = rgb(red = error[,13]/max(error[,13
 error[,13]
 error[,14]
 
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[1]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[2]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[3]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[4]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[5]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[6]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[7]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[8]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[9]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[10]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[11]][[1]][[1]],]$Species
-train_BodySize[getPhyloGroups(train_tree)[unique(error[,13])[12]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[1]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[2]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[3]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[4]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[5]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[6]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[7]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[8]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[9]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[10]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[11]][[1]][[1]],]$Species
+train_data[getPhyloGroups(tree_train)[unique(error[,'theta_2_2'])[12]][[1]][[1]],]$Species
 
 #theta_2 =  epsilon * exp(-delta * N1 * N2) 
 
-BodySize[clade2,]$Species 
-BodySize[clade1,]$Species 
+tree_data[clade2,]$Species 
+tree_data[clade1,]$Species 
 
 ggtree::ggtree(tree, branch.length = 'none', layout = 'circular') + 
-  ggtree::geom_tippoint(size=.15*as.numeric(BodySize$BodySize),col='blue')  +
-  ggtree::geom_tippoint(size=.10*as.numeric(as.character(BodySize$BodySize_miss)),col='red') +
+  ggtree::geom_tippoint(size=.15*as.numeric(tree_data$BodySize),col='blue')  +
+  ggtree::geom_tippoint(size=.10*as.numeric(as.character(tree_data$BodySize_miss)),col='red') +
   ggtree::geom_tiplab()  
 
-ggtree::ggtree(train_tree, branch.length = 'none', layout = 'fan') + 
-  ggtree::geom_tippoint(size=.23*as.numeric(as.character(train_BodySize$BodySize_miss)),col='red') +
+ggtree::ggtree(tree_train, branch.length = 'none', layout = 'fan') + 
+  ggtree::geom_tippoint(size=.23*as.numeric(as.character(train_data$BodySize_miss)),col='red') +
   ggtree::geom_tiplab() 
 
 # plot((error[,1]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
@@ -389,17 +191,45 @@ ggtree::ggtree(train_tree, branch.length = 'none', layout = 'fan') +
 # plot(error[,1], error[,8], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 # plot(error[,1], error[,6], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 # 
-plot(y =error[,3], x=error[,6], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
+plot(y = error[,'beta_ridge_1_1'], x = error[,'theta_2_1'], lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 # 
 # plot((error[,10]), type = 'l', lwd = 5, col = rgb(red = 1, green = 0, blue = 1, alpha = 0.9))
 # 
 # plot((error[,11]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 # plot((error[,12]), type = 'l', lwd = 5, col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))
 
-plot(error[,11] - error[,9], col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
+plot(error[,'N1_2'] - error[,'beta_ridge_2_2'], col = rgb(red = 0, green = 0, blue = 1, alpha = 0.9))                         
 
 ```
 
 
 
+
+
+#wyatts table
+```{r}
+by_drops = list()
+drop_iters <- seq(8, 8 + 4*5, 4)
+
+for (k in drop_iters) {
+  error <- phylo_bayes_opti_epsilon(iters = 15,
+                                  epsilon.seq = c(0.01, 1, 2, 4, 8, 16, 32, 64, 128, 512),
+                                  drop.tips.num = num / 10,
+                                  tree = tree,
+                                  tree.data = tree_data,
+                                  clade.1 = clade1,
+                                  clade.2 = clade2)
+  
+  temp <- error %>% 
+    as_tibble %>% 
+    group_by(epsilon) %>% 
+    summarize(mean_sse_map = mean(sse_map_1),
+              mean_sse_gpf = mean(sse_gpf))
+  
+  ind <- which.min(temp$mean_sse_map)
+  
+  by_drops[[k]] <- temp[ind, ]
+}
+
+```
 
