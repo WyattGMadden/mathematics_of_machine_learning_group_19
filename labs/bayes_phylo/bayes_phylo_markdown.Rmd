@@ -50,7 +50,7 @@ BodySize <- BodySize %>%
 #in this simulation around 1/3 of the data are missing
 
 #num_miss = 1 + rpois(1,nrow(train_BodySize)/2.5)
-num_miss = nrow(BodySize)/2
+num_miss = nrow(BodySize)/3
 
 #num_miss = rpois(1,10)  
 miss_tip = sample(tree$tip.label, num_miss)
@@ -120,24 +120,31 @@ train_BodySize$train_BodySize_miss = as.numeric(as.character(train_BodySize$Body
 
 ggtree::ggtree(tree, branch.length = 'none', layout = 'circular') + 
   ggtree::geom_tippoint(size=.15*as.numeric(BodySize$BodySize),col='blue')  +
-  ggtree::geom_tippoint(size=.13*as.numeric(as.character(BodySize$BodySize_miss)),col='red') +
+  #ggtree::geom_tippoint(size=.03*as.numeric(as.character(BodySize$BodySize_miss)),col='red') +
   ggtree::geom_tiplab()  
 
+
+ggtree::ggtree(train_tree, branch.length = 'none', layout = 'circular') + 
+  ggtree::geom_tippoint(size=.15*as.numeric(train_BodySize$BodySize_miss),col='blue')  +
+  #ggtree::geom_tippoint(size=.03*as.numeric(as.character(BodySize$BodySize_miss)),col='red') +
+  ggtree::geom_tiplab()  
 ```
 
 
 ```{r, message= FALSE, warning = FALSE, echo = FALSE, results = 'hide'}
 tries = seq(1:15)
-#epsilon_seq = c(1,10,20,50,100,200 ) #must be the same as line 11
-epsilon = 100
-delta_seq = c(0.001,1,2,4,8,16,32)
+epsilon_seq = c(0.01,1,2,4,8,16,32,64,128,512) #must be the same as line 11
+#epsilon = 100
+#delta_seq = c(0.001,1,2,4,8,16)
 
 index = 0
 
-error <- matrix(0, length(tries)*length(delta_seq)*length(epsilon), 20)
+#error <- matrix(0, length(tries)*length(delta_seq)*length(epsilon_seq), 22)
+error <- matrix(0, length(tries)*1*length(epsilon_seq), 22)
+
 delta=1
-plot(epsilon * exp(-delta *seq(0,1,.01)), type = 'l', xlab = "Percent Missing in Tips", ylab ="Penalty")
-plot(epsilon * exp(-16 *seq(0,1,.01)), type = 'l', xlab = "Percent Missing in Tips", ylab ="Penalty")
+#plot(epsilon * exp(-delta *seq(0,1,.01)), type = 'l', xlab = "Percent Missing in Tips", ylab ="Penalty")
+#plot(epsilon * exp(-16 *seq(0,1,.01)), type = 'l', xlab = "Percent Missing in Tips", ylab ="Penalty")
 
 
 for(yy in tries)
@@ -161,7 +168,6 @@ for(yy in tries)
   test_BodySize = BodySize %>% 
   dplyr::filter(Species %in% test_tree$tip.label)
 
-
   #should both be true:
 
   sum(train_BodySize$Species %in% test_BodySize$Species) == 0
@@ -170,7 +176,6 @@ for(yy in tries)
   train_BodySize$basis_miss = as.numeric(train_BodySize$basis_miss)
   train_BodySize$BodySize_miss = as.numeric(as.character(train_BodySize$BodySize_miss))
   train_BodySize$intercept_miss = as.numeric(train_BodySize$intercept_miss)
-
 
   test_BodySize <- test_BodySize %>%
   dplyr::mutate(intercept = as.numeric(as.character(intercept))) %>%
@@ -182,20 +187,20 @@ for(yy in tries)
   train_BodySize$train_BodySize_miss = as.numeric(as.character(train_BodySize$BodySize_miss))
 
   x = NULL
-  #for(x in epsilon_seq)
-  #{
+  for(x in epsilon_seq)
+  {
    #print(paste("X =", x))
-   #epsilon = x
+   epsilon = x
    j=NULL
-   for(j in delta_seq)
-    {
+   #for(j in delta_seq)
+   # {
     #switch things up, keep the same tree, but grab different training and tesing everytime
-    print(paste("j =", j))
+   # print(paste("j =", j))
     index = index + 1
     #delta is a control parameter for the bayesian model. as it gets bigger the estimates shrink to 0
-    delta = j
+    #delta = j
     #print(num)
-    source('6th_attempt.R')
+    source('/Users/dancrowley/Documents/machine_learning_zosso/mathematics_of_machine_learning_group_19/labs/bayes_phylo/6th_attempt.R')
   
     #create the predictions based on mu_map
     #create a new variable, and label the boddy size and basis functions NA for these tips
@@ -212,24 +217,27 @@ for(yy in tries)
     min = which.min(results[,1])
     min_2 = which.min(results[,2])
     
-  # results[i,1] <-  sse_map
-  # results[i,2] <-  SSE_train
-  # results[i,3] <-  beta_ridge[2]
-  # results[i,4] <-  beta_ridge[1]
-  # results[i,5] <-  N1
-  # results[i,6] <-  N2
-  # results[i,7] <-  theta_2
-  
-   error[index,1]  <-  results[min,1] #sse 
-   error[index,2]  <-  results[min,2]
-   error[index,3]  <-  results[min,3]
-   error[index,4]  <-  results[min,4]
-   error[index,5]  <-  results[min,5]
-   error[index,6]  <-  results[min,6]
-   error[index,7]  <-  results[min,7]
+   # results[i,1] <-  sse_map
+   # results[i,2] <-  SSE_train
+   # results[i,3] <-  beta_ridge[2]
+   # results[i,4] <-  beta_ridge[1]
+   # results[i,5] <-  N1
+   # results[i,6] <-  N2
+   # results[i,7] <-  theta_2
+    
+   stat1 = sum(train_BodySize[getPhyloGroups(train_tree)[min][[1]][[1]],]$Species %in% clade1)/length(clade1)
+   stat2 = sum(train_BodySize[getPhyloGroups(train_tree)[min][[1]][[1]],]$Species %in% clade2)/length(clade2)
 
-   error[index,8]  <-  results[min_2,1] #sse 
-   error[index,9]  <-  results[min_2,2]
+   error[index,1]   <-  results[min,1] #sse 
+   error[index,2]   <-  results[min,2]
+   error[index,3]   <-  results[min,3]
+   error[index,4]   <-  results[min,4]
+   error[index,5]   <-  results[min,5]
+   error[index,6]   <-  results[min,6]
+   error[index,7]   <-  results[min,7]
+
+   error[index,8]   <-  results[min_2,1] #sse 
+   error[index,9]   <-  results[min_2,2]
    error[index,10]  <-  results[min_2,3]
    error[index,11]  <-  results[min_2,4]
    error[index,12]  <-  results[min_2,5]
@@ -239,16 +247,19 @@ for(yy in tries)
    error[index,15]  <-  delta
    error[index,16]  <-  epsilon
    error[index,17]  <-  sse_gpf
-   error[index,18] <-  min
-   error[index,19] <-  min_2
-   error[index,20] <-  yy
+   error[index,18]  <-  min
+   error[index,19]  <-  min_2
+   error[index,20]  <-  yy
+   
+   error[index,21]  <-  stat1
+   error[index,22]  <-  stat2
 
 
    print(paste("index = " ,index ))
    #print(error[index,])
   }
+ }
 
-}
 ```
 
 
@@ -261,7 +272,7 @@ error %>%
   ggplot2::geom_tile(aes(fill= as.numeric(V1) )) +
   ggplot2::xlab("delta") +
   ggplot2::ylab("epsilon") +
-  facet_wrap(~V15, scales = 'free')
+  facet_wrap(~V20, scales = 'free')
 
 ```
 
@@ -270,7 +281,7 @@ error %>%
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V1), x  = V15, group = V20 ), lwd = 6) +
+  ggplot2::geom_line(aes(y = as.numeric(as.character(V1)), x  = V16), lwd = 1) +
   facet_wrap(~V20, scales='free') +
   ylab("SSE Testing Data") +
   xlab ("Delta") +
@@ -279,7 +290,16 @@ error %>%
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V1), x  = V7, group = V20 ), lwd = 6) +
+  ggplot2::geom_line(aes(y = as.numeric((V1)), x  = V16), lwd = 1) +
+  facet_wrap(~V20, scales='free') +
+  ylab("SSE Testing Data") +
+  xlab ("Delta") +
+  facet_wrap(~V20, scales='free')
+
+error %>%
+  as.data.frame() %>%
+  ggplot2::ggplot() +
+  ggplot2::geom_line(aes(y = as.numeric(V1), x  = V7, group = V20 ), lwd = 1) +
   ylab("SSE Testing Data") +
   xlab ("Lambda") +
   facet_wrap(~V20, scales='free')
@@ -287,13 +307,24 @@ error %>%
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V9), x  = V15, group = V20 )) +
+  ggplot2::geom_line(aes(y = as.numeric(V21), x  = V7, group = V20 ), lwd = 2) +
+  ggplot2::geom_line(aes(y = as.numeric(V22), x  = V7, group = V20 ), lwd = 2) +
+  facet_wrap(~V20, scales='free') +
+  ylab("Proportion Correct") +
+  xlab ("Lambda") +
+  facet_wrap(~V20)
+
+
+error %>%
+  as.data.frame() %>%
+  ggplot2::ggplot() +
+  ggplot2::geom_line(aes(y = as.numeric(as.character(V9)), x  = V16, group = V20 )) +
   facet_wrap(~V20, scales='free')
 
 error %>%
   as.data.frame() %>%
   ggplot2::ggplot() +
-  ggplot2::geom_line(aes(y = as.numeric(V9), x  = V7, group = V20 ), lwd = 6, col = "red") +
+  ggplot2::geom_line(aes(y = as.numeric(V9), x  = V7, group = V20 ), lwd = 1, col = "red") +
    ylab("SSE Training Data")+
   xlab("Lambda") +
   facet_wrap(~V20, scales='free')
