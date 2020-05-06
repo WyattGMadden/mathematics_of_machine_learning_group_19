@@ -1,15 +1,6 @@
 # delta = 1
 # epsilon = 1
 
-test_BodySize <- test_BodySize %>%
-  dplyr::mutate(intercept = as.numeric(as.character(intercept))) %>%
-  dplyr::mutate(BodySize = as.numeric(as.character(BodySize))) %>%
-  dplyr::mutate(basis = as.numeric(as.character(basis)))
-
-train_BodySize$basis_miss = as.numeric(as.character(train_BodySize$basis_miss))
-train_BodySize$intercept_miss = as.numeric(as.character(train_BodySize$intercept_miss))
-train_BodySize$train_BodySize_miss = as.numeric(as.character(train_BodySize$BodySize_miss))
-
 results <- matrix(0, (2*(length(train_tree$tip.label))-2), 7 )
 
 #......................................phylofactor step......................................................
@@ -35,10 +26,11 @@ for (i in 1: (2*(length(train_tree$tip.label))-2))
   N1 = sum(!is.na(train_BodySize[grp1,]$BodySize_miss))/length(train_BodySize[grp1,]$BodySize) 
   N2 = sum(!is.na(train_BodySize[grp2,]$BodySize_miss))/length(train_BodySize[grp2,]$BodySize)
   
-  theta_2 =  epsilon * exp(-delta * N1 * N2) 
+  #theta_2 =  epsilon * exp(-delta * N1 * N2) 
+  theta_2 =  epsilon * abs(log(N1 / N2))
   
-  #theta = diag(2) * c(theta_2, 1/1000)
-  theta = diag(2) * c(theta_2, theta_2)
+  theta = diag(2) * c(theta_2, 1/1000)
+  #theta = diag(2) * c(theta_2, theta_2)
   
   #theta = diag(2) * c(0,0)
   theta
@@ -53,8 +45,7 @@ for (i in 1: (2*(length(train_tree$tip.label))-2))
   grp1_map = train_tree$tip.label[getPhyloGroups(train_tree)[i][1][[1]][[1]]]
   grp2_map = train_tree$tip.label[getPhyloGroups(train_tree)[i][1][[1]][[2]]]
   grps=list(grp1_map, grp2_map)
-  cross_val_map = crossVmap(grps, tree= tree, original_community = train_tree$tip.label, test_tree$tip.label, ignore.interruptions = F)
-  
+
   cross_val_map = crossVmap(grps, tree= tree, original_community = train_tree$tip.label, test_tree$tip.label)
   
   #if (length(cross_val_map) > 2) next 
@@ -73,21 +64,21 @@ for (i in 1: (2*(length(train_tree$tip.label))-2))
   #print(sse_map)
   
   results[i,1] <-  sse_map
-  results[i,2] <-  beta_ridge[2]
-  results[i,3] <-  beta_ridge[1]
-  results[i,4] <-  N1
-  results[i,5] <-  N2
-  results[i,6] <-  theta_2
-  results[i,7] <-  SSE_train
+  results[i,2] <-  SSE_train
+  results[i,3] <-  beta_ridge[2]
+  results[i,4] <-  beta_ridge[1]
+  results[i,5] <-  N1
+  results[i,6] <-  N2
+  results[i,7] <-  theta_2
   
   }
   
-plot(results[,1])
+#plot(results[,1])
 
-plot(results[,1], results[,7])
+#plot(results[,1], results[,7])
 
 which.min(results[,1])
-which.min(results[,7])
+which.min(results[,2])
 
 getPhyloGroups(train_tree)[which.min(results[,1])]
 getPhyloGroups(train_tree)[which.min(results[,7])]
