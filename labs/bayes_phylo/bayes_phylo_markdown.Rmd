@@ -231,5 +231,11 @@ for (k in drop_iters) {
   by_drops[[k]] <- temp[ind, ]
 }
 
+
+by_drops
+
+
+bind_rows(by_drops) %>% 
+  mutate(drops = drop_iters) %>% View
 ```
 
